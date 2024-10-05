@@ -1,0 +1,50 @@
+.header{
+    width: 100%;
+    height: 3rem;
+    background-color: coral;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1px 1rem;
+    // color: ;
+    font-weight: 700;
+    font-size: 18px;
+    .user{
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+        .user-details{
+            position: absolute;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            // display: none;
+            top: 30px;
+            padding: 20px;
+            .profile {
+               padding: 10px 0px;
+            //    width: 100%;
+               span{
+                   cursor: pointer;
+                //    width: 100%;
+                //    padding: 10px;
+                    // &:hover{
+                    //     background-color: #aaa;
+
+                    // }
+               }
+            }
+        }
+        // &:{
+        //     .user-details{
+        //         display: block;
+        //     }
+        // }
+    }
+}

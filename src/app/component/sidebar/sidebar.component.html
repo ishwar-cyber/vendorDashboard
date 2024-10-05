@@ -1,0 +1,10 @@
+<div class="sidebar">
+    <ul class="mian-list">
+        @for(list of sidebarList; track $index){
+            <li class="list" [routerLink]="list.redirectTo" routerLinkActive="router-link-active" >
+                <i [class]=list.icon></i>
+                {{list.name}}
+            </li>
+        }
+    </ul>
+</div>

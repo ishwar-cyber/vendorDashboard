@@ -1,0 +1,17 @@
+<header class="header">
+   <div class="brand">Welcome</div>
+   <div class="user">
+      <i class="fa-solid fa-user"></i>
+      <p>Vendor</p>
+      @if(vendorProfile){
+        <div class="user-details">
+            @for(user of userProfile; track user.name){
+                <div class="profile">
+                    <span [routerLink]="user.redirectTo" routerLinkActive="router-link-active" >{{user.name}}</span>
+                </div>
+            }
+        </div>
+      }
+    </div>
+
+</header>

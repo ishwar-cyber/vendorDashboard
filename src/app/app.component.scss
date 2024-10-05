@@ -1,0 +1,22 @@
+.header-main{
+    width: 100%;
+}
+.main{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    .sidebar{
+        width: 20%;
+        height: 100vh;
+        background-color: aqua;
+        border-radius: 8px;
+        padding: 20px;
+    }
+    .apnel-main{
+        width: 80%;
+        height: 100vh;
+        // background-color: black;
+        padding: 20px;
+    }
+}

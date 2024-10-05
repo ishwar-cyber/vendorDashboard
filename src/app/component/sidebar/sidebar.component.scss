@@ -1,0 +1,22 @@
+.sidebar{
+    .mian-list{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+        .list{
+            font-size: 18px;
+            font-weight: 700;
+            list-style-type: none;
+            display: flex;
+            flex-direction: row;
+            column-gap: 10px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            &:hover{
+                background-color: #aaa;
+                color: white;
+            }
+        }
+    }
+}

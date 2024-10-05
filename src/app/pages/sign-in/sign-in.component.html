@@ -1,0 +1,38 @@
+<div class="login">
+    <div class="left-image"></div>
+    <div class="login-form">
+        <h3>Login</h3>
+        <form [formGroup]="loginForm">
+            <div class="flex-container">
+                <div class="flex-item">
+                    <label for="phone">Mobile Number</label>
+                    <input type="tel" id="phone" placeholder="Ex.9876555555" formControlName="mobile">
+                </div>
+                <div class="error">
+                    Plaese enter your mobile number
+                </div>
+                <div class="flex-item">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Ex.*******" formControlName="password">
+                </div>
+                @if(loginForm.controls['password']?.invalid && (loginForm.controls['password']?.dirty || loginForm.controls['password']?.touched)){
+                    <div class="error">
+                        @if(loginForm?.controls['password']?.errors?.required){
+                            <div>
+                                Plaese enter your password
+                            </div>
+                        }
+                        @if(loginForm?.controls['password']?.errors?.maxlength){
+                            <div>
+                                Plaese enter your password max 8 character
+                            </div>
+                        }
+                    </div>   
+                }       
+            </div>
+            <div class="login-cta">
+                <button type="button" (click)="login()">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
