@@ -29,8 +29,13 @@
                 </div>
             </div>
             <div class="login_signup">
-                    <a [routerLink]="['/login']" routerLinkActive="router-link-active" >Log in</a>
-                    <a [routerLink]="['/singup']">Sign up</a>
+                    @if(authToken){
+                     <a [routerLink]="['/website/mybooking']" routerLinkActive="router-link-active" >My Booking</a>
+                    }
+                    <a [routerLink]="['/login']" routerLinkActive="router-link-active" >{{authToken ? 'Welcome' : 'Log in'}}</a>
+                    @if(!authToken){
+                        <a [routerLink]="['/singup']">Sign up</a>
+                    }
             </div>
         </div>
        

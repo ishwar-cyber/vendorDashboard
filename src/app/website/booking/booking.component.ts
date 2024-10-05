@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SharedService } from '../../common/shared.service';
 import { CalendarComponent } from '../../component/calendar/calendar.component';
 import { CheckTimeMorePipe } from '../../pipe/check-time-more.pipe';
@@ -34,6 +35,7 @@ export class BookingComponent implements OnInit{
 
   bookingService = inject(BookingService);
   sharedService = inject(SharedService);
+  router = inject(Router)
 
   ngOnInit(): void {
      this.sharedService.getData().subscribe((res)=>{
@@ -138,28 +140,37 @@ export class BookingComponent implements OnInit{
   } 
 
   bookedTimeSlot(){
-    
-    for(let i = 0; i < this.vendorServiceKey.length; i++){
-      this.selectTimeService.push({
-        vendorServiceKey: this.vendorServiceKey[i],
-        time: this.bookedTime[i] || ""
-      })
-    }
-    const payload = {
-      date: this.selectedDay,
-      serviceBookingList:  this.selectTimeService, //[...this.selectedTime,{venderServiceKey:this.vendorServiceKey}],
-      paymentStatus: "pending",
-      paymentMode: "cash",
-      isActive: true
-    };
-    this.modalVisible = true;
-    this.selectedTime = new Set();
-    this.bookingService.createBooking(payload).subscribe((response)=>{
-      if(response.hasOwnProperty('error')){
-       
+    let authToken = localStorage.getItem('token')
+    if(authToken){
+      for(let i = 0; i < this.vendorServiceKey.length; i++){
+        this.selectTimeService.push({
+          vendorServiceKey: this.vendorServiceKey[i],
+          time: this.bookedTime[i] || ""
+        })
       }
-    })
+      const payload = {
+        date: this.selectedDay,
+        serviceBookingList:  this.selectTimeService, //[...this.selectedTime,{venderServiceKey:this.vendorServiceKey}],
+        paymentStatus: "pending",
+        paymentMode: "cash",
+        isActive: true
+      };
+      this.modalVisible = true;
+      this.selectedTime = new Set();
+      this.bookingService.createBooking(payload).subscribe((response)=>{
+        if(response.hasOwnProperty('error')){
+        
+        }
+      });
+    } else {
+      if(this.bookedTime && this.vendorServiceKey){
+        localStorage.setItem('redirectTo','/website/mybooking')
+        this.router.navigate(['/login']);
+      }
+     
+    }
   }
+
 
   public selectTab(tab:string){
     this.activeTab = tab;

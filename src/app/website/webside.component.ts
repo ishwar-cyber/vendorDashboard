@@ -12,13 +12,16 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class WebsideComponent implements OnInit{
 
   public openLocationDropdown: boolean = false;
-
+  public authToken: any;
   pincodeForm:any = FormGroup;
   formBuilder = inject(FormBuilder);
   ngOnInit(): void {
    this.pincodeForm = this.formBuilder.group({
       pincode:['',Validators.required,Validators.maxLength(6)],
-   })
+   });
+
+   this.authToken = localStorage.getItem('token');
+   
   }
   getLocation(){
     if(navigator.geolocation){

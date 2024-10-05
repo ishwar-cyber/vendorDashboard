@@ -18,6 +18,7 @@ export class ShopCardsComponent implements OnInit{
   shopLat = 18.3344;
   shopLon = 18.5621;
   vendorUrl = 'http://localhost:8081/vendor';
+  public modalVisible: boolean =false
   public filterList = [
     {
       name:'Ac salon'
@@ -48,5 +49,13 @@ export class ShopCardsComponent implements OnInit{
     localStorage.setItem('vendorId',id)
     this.sharedService.setData(id);
     this.router.navigate([`/website/shop/${id}`])
+  }
+
+  public openFilter(){
+    this.modalVisible = true;
+  }
+
+  public hideModal(event:any){
+    this.modalVisible = !this.modalVisible;
   }
 }

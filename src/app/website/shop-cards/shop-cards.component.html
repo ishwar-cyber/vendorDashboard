@@ -4,7 +4,7 @@
     </div>
     <section>
         <div class="filter">
-            <div class="list main-filter"><i class="fa-solid fa-filter"></i> Filter</div>
+            <div class="list main-filter" (click)="openFilter()"><i class="fa-solid fa-filter"></i> Filter</div>
             @for(list of filterList; track list.name){
                 <div class="list">{{list.name}} <i class="fa-solid fa-xmark" ></i></div>
             }
@@ -34,4 +34,18 @@
         }
     </div>
 </div>
+@if(modalVisible){
+    <div class="modal" >
+        <div class="filter">
+            <div class="close-modal" (click)="hideModal($event)">
+                <i class="fa-regular fa-circle-xmark"></i>
+            </div>
+           
+            <div class="modal-body">
+                <div class="success-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+}
 

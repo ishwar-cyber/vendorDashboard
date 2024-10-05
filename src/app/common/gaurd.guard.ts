@@ -1,5 +1,12 @@
-import { CanActivateFn } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 
 export const gaurdGuard: CanActivateFn = (route, state) => {
-  return true;
-};
+  const router = inject(Router);
+
+  if(localStorage.getItem('token')!==null){
+    return true;
+  }
+  router.navigate(['/website']);
+  return false;
+}

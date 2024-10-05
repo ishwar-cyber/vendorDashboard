@@ -2,8 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import moment from 'moment';
-import { Observable, range } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { range } from 'rxjs';
 
 export interface CalendarDate {
   mDate: moment.Moment;
@@ -59,7 +58,6 @@ export class CalendarComponent implements OnInit{
 
     const firstOfDaysGrid = moment(currentMoment).startOf('month').subtract(firstOfMonth,'days');
     const lastOfDaysGrid =  moment(currentMoment).endOf('month').subtract(lastOfMonth,'days').add(7,'days');
-    // console.log('currentMoment 1234',firstOfDaysGrid, lastOfDaysGrid);
     const startCalendar = firstOfDaysGrid.date();
     
     return range(startCalendar, startCalendar + lastOfDaysGrid.diff(firstOfDaysGrid, 'days')).forEach((date: number) => {
