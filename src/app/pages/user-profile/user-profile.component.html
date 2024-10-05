@@ -1,0 +1,139 @@
+<div class="profile-container">
+  <h2>My Profile</h2>
+  <form [formGroup]="userProfileForm" (ngSubmit)="saveProfile()">
+
+    <div class="profile-picture">
+      <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" alt="My Image">
+    </div>
+
+    <div class="form-group">
+      <label for="mob">Mobile Number:</label>
+      <input type="tel" id="mob" [formControl]="mob">
+    </div>
+
+
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" [formControl]="name" value="cs">
+    </div>
+
+    <div class="form-group">
+      <label for="emailid">Email Id:</label>
+      <input type="text" id="emailid" [formControl]="emailid" required>
+    </div>
+
+    @if(userType==='VENDOR'){
+
+    <div class="form-group">
+      <label for="vendorOutlet">Vendor Outlet Name:</label>
+      <input type="text" id="vendorOutlet" [formControl]="vendorOutlet" required>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input type="text" id="address" [formControl]="address" required>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" id="city" [formControl]="city" required>
+    </div>
+
+    <div class="form-group">
+      <label for="state">State:</label>
+      <input type="text" id="state" [formControl]="state" required>
+    </div>
+
+    <div class="form-group">
+      <label for="pincode">Pincode:</label>
+      <input type="text" id="pincode" [formControl]="pincode" required>
+    </div>
+
+    <div class="form-group">
+      <label for="open">Outlet Opening Time:</label>
+      <input type="time" id="open" [formControl]="open" required>
+    </div>
+
+    <div class="form-group">
+      <label for="close">Outlet Closing Time:</label>
+      <input type="time" id="close" [formControl]="close" required>
+    </div>
+
+    <div class="form-group">
+      <label for="seats">Total Seats within Outlet:</label>
+      <input type="number" id="seats" [formControl]="seats" min="1" required>
+    </div>
+
+    <div class="form-group">
+      <label for="shop_mobile">Outlet Mobile Number:</label>
+      <input type="tel" id="shop_mobile" [formControl]="shop_mobile" required>
+    </div>
+
+    <div class="form-group">
+      <label for="shop_email">Outlet Email:</label>
+      <input type="email" id="shop_email" [formControl]="shop_email" required>
+    </div>
+
+    <button type="button" (click)="openModal()" class="btn btn-primary">Add Services</button>
+
+
+    @if(this.showModal==true){
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h3>Add/Update Services</h3>
+        <form [formGroup]="userProfileServicesForm" (ngSubmit)="updateServiceInForm()">
+          <label for="masterService">Select Service:</label>
+          <select id="masterService" [formControl]="masterServiceName">
+            @for (item of this.servicesList; track item.id) {
+            <option [value]="item.name"> {{ item.name }}
+            </option>
+            }
+            @empty {
+            <li>No Services available in Master</li>
+            }
+          </select>
+
+          <label for="servicePrice">Price:</label>
+          <input id="servicePrice" type="number" placeholder="Enter Price" [formControl]="masterServicePrice"
+            required />
+          <button type="submit" class="btn btn-primary" (click)="closeModal()">Save</button>
+        </form>
+      </div>
+    </div>
+    }
+
+    <div class="card-parent-2">
+      @for(service of this.existingAvailableServices;track service.id){
+        <div class="service-card-2">
+          <h3>{{ service.serviceName }}</h3>
+          <p>Price: <strong>{{ service.price }}</strong></p>
+        </div>
+        }
+        @empty(){
+  
+        }
+    </div>
+
+    <div class="card-parent">
+      @for(service of manuallyAddedServices;track service.id){
+      <div class="service-card">
+        <h3>{{ service.name }}</h3>
+        <p>Price: <strong>{{ service.price }}</strong></p>
+        <button (click)="deleteService(service.id)" class="delete-button">🗑️</button>
+      </div>
+      }
+      @empty(){
+
+      }
+    </div>
+
+    }
+
+
+    <br>
+
+    <button type="submit" class="save-btn" [disabled]="!userProfileForm.valid" (click)="saveProfile()">Save</button>
+  </form>
+
+</div>

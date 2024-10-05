@@ -11,6 +11,7 @@ import { MyBookingComponent } from './website/my-booking/my-booking.component';
 import { ShopCardsComponent } from './website/shop-cards/shop-cards.component';
 import { ShopPageComponent } from './website/shop-page/shop-page.component';
 import { WebsideComponent } from './website/webside.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 export const routes: Routes = [
     {
@@ -21,6 +22,9 @@ export const routes: Routes = [
     },
     {
         path:'register', component:SignUpComponent
+    },
+    {
+        path:'profile/:userid',component:UserProfileComponent
     },
     {
         path:'dashboard', component:DashboardComponent,
