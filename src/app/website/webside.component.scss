@@ -1,0 +1,150 @@
+.container{
+    padding:0px 2rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    .web_header{
+        width: 100%;
+        display: flex;
+        box-sizing: border-box;
+        padding-top:20px ;
+        .desktop-header{
+            width: 100%;
+            display: flex;
+            .pincode{
+                width: 100%;
+                height: 20px;
+                border-right: 1px solid;
+                padding-left: 10px;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                row-gap: 20px;
+                .location{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    row-gap: 20px;
+                    padding: 0px 10px;
+                    .location-input{
+                        border: none;
+                        outline: none;
+                        padding-left: 10px;
+                    }
+                }
+                .location-dropdown{
+                    position: relative;
+                    z-index: 1;
+                    right: 10px;
+                    border: 1px solid #aaa;
+                    border-radius: 8px;
+                    background-color: white;
+                    color: red;
+                    padding: 15px;
+                    font-size: 10px;
+                }
+            }
+            .search{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+                column-gap: 20px;
+                h3{
+                    font-size: xx-large;
+                }
+                .search_input{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    background-color: white;
+                    height: 3rem;
+                    box-shadow: rgba(28, 28, 28, 0.08) 0px 2px 8px;
+                    border-radius: 8px;
+                    .form{
+                        width: 100%;
+                        padding: 0px 20px;
+                        display: flex;
+                        flex-direction: row;
+                        column-gap: 15px;
+                        .form-control{
+                            width: 100%;
+                            border: none;
+                            outline: none;
+                        }
+                    }
+                }
+            }
+            .login_signup{
+                width: 50%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                flex-direction: row;
+                column-gap: 20px;
+                a{
+                    text-decoration: none;
+                    color: black;
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+            }
+        }
+
+       .mobile-header{
+        display: none;
+       }
+    }
+    .footer{
+        width: 100%;
+        height: 400px;
+        background-color: black;
+        border-radius: 8px;
+        padding: 20px;
+        .footer-brand{
+            font-size: 30px;
+            color: white;
+        }
+    }
+}
+/* Styles for screens wider than 600px */
+@media screen and (max-width: 600px) {
+    .time{
+        width: 30%;
+    }
+
+  }
+  
+  /* Styles for screens wider than 900px */
+  @media screen and (min-width: 768px) {
+    .search_input-mobile{
+        display: none;
+    }
+  }
+  
+  /* Styles for mobile devices (less than 600px) */
+  @media screen and (max-width: 767px) {
+    .search_input{
+        display: none !important;
+        
+    }
+    .login_signup a{
+        font-size: 15px !important;
+    }
+    .mobile-header{
+        display: none !important;
+    }
+    .web_header{
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+    .search_input-mobile{
+        display: block;
+    }
+    // .container{
+    //     width: 100% !important;
+    //     padding: 0px 1rem !important;
+    // }
+  }

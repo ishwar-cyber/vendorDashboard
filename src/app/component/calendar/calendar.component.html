@@ -1,0 +1,52 @@
+<div class="calendar__wrapper">
+    <div class="calendar__input-wrapper" (click)="showCalendar = !showCalendar">
+      <input readonly class="calendar__input">
+      <img class="icon_calendar" [src]="'assets/calendar-icon.png'" alt="calendar icon" />
+    </div>
+    @if(showCalendar){
+        <div class="calendar" #calendar>
+        <div class="calendar__navs">
+            <div class="calendar__month-nav">
+            <button class="calendar__nav-btn" (click)="prevMonth()">&lt;</button>
+            <span>
+                {{currentDate.format('MMMM').toUpperCase()}}  
+                {{currentDate.format('YYYY')}}
+                </span>
+            <button class="calendar__nav-btn" 
+                    [disabled]="!isDisabledMonth(currentDate)"
+                    (click)="nextMonth()"
+            >&gt;</button>
+            </div>
+        </div>
+        <div class="calendar__month">
+            <div class="calendar__day-names">
+                @for(name of dayNames; track $index){
+                <div class="calendar__day-name" 
+                    >{{name}}</div>
+                }
+            </div>
+            <div class="calendar__weeks">
+                @for(week of weeks; track $index){
+                    <pre>{{week |json}}</pre>
+                    <div class="calendar__week">
+                        @for(day of week; track $index){
+                            <ng-container>
+                                <div class="calendar__date"
+                                    [ngClass]="{'today': day.today, 
+                                                    'selected': day.selected, 
+                                                    'disabled': !isSelectedMonth(day.mDate)}"
+                                    (click)="selectDate(day)">
+                                    <span class="calendar__number">{{day.mDate.date()}}</span>
+                                </div>
+                            </ng-container>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+        </div>
+    }
+  </div>
+  
+
+ 

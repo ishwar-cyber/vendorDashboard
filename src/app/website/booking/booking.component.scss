@@ -1,0 +1,201 @@
+// .container{
+    .main-form{
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        row-gap: 20px;
+        column-gap: 20px;
+        .dropdown{
+            width: 20%;
+            position: relative;
+            .input-dropdown{
+                position: relative;
+                padding: 10px;
+                width: 100%;
+                border-radius: 8px;
+                border: 1px solid #aaa;
+                display: flex;
+                justify-content: space-between;
+                cursor: pointer;
+                .current-select{
+                    display: flex;
+                    flex-direction: row;
+                    column-gap: 5px;
+                }
+            }
+            .dropdown-list{
+                position: absolute;
+                border-radius: 8px;
+                border: .05px solid;
+                width: 100%;
+                padding: 10px;
+                line-height: 20px;
+                background-color: white;
+                .list{
+                    padding: 5px;
+                    cursor: pointer;
+                    &:hover{
+                        background-color: #aaa;
+                        color: white;
+                        border-radius: 4px;
+
+                    }
+                }
+
+            }
+        }
+        .time-slot{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            .slot-heading{
+                box-sizing: border-box;
+                min-width: 0px;
+                padding-right: 14px;
+                color: rgb(28, 28, 28);
+                background-color: rgb(255, 255, 255);
+                font-size: 22px;
+                font-weight: 600;
+                padding-left: 28px;
+            }
+            .time-booking{
+                column-gap: 19px;
+                // padding: 20px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                flex-direction: row;
+                row-gap: 15px;
+                box-sizing: content-box;
+                .time{
+                    width: 15%;
+                    padding: 15px;
+                    cursor: pointer;
+                    box-shadow: rgba(28, 28, 28, 0.06) 0px 1.481px 5.924px 0px;
+                    border: 1.5px solid rgb(230, 233, 239);
+                    border-radius: 16px;
+                    text-align: center;
+                    font-weight: 700;
+                }
+                .selectSlot{
+                    background-color: green;
+                    color: white;
+                    font-weight: 700;
+                }
+            }
+            .slot-tab{
+                display: flex;
+                flex-direction: row;
+                column-gap: 20px;
+                padding: 10px 0px;
+                .tab{
+                    // width: 30%;
+                    background-color: white;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: 700;
+                    box-shadow: rgba(28, 28, 28, 0.12) 0px 0.4rem 1.8rem;
+                    cursor: pointer;
+                    &:hover{
+                        color: #aaa;
+                    }
+                }
+            }
+        } 
+        .booking-cta{
+            width: 20%;
+            .cta{
+                padding: 11px 11px;
+                border: none;
+                font-size: 14px;
+                font-weight: 700;
+                border-radius: 8px;
+            }
+            .disabled{
+                cursor: not-allowed;
+            }
+        }
+        .active{
+            background-color: coral !important;
+            color: white !important;
+            cursor: pointer;
+        }    
+    }
+
+// }
+
+@media screen and (max-width: 767px) {
+    .main-form{
+        display: flex;
+        flex-direction: column;
+    }
+    .dropdown{
+        width: 100% !important;
+    }
+    .input-dropdown{
+        width: 100%;
+    }
+    .time{
+        width: 28% !important;
+        padding: 11px !important;
+    }
+    .slot-tab{
+        column-gap: 6px !important;
+    }
+    .booking-cta{
+        width: 100% !important;
+        text-align: center;
+    }
+    .booking-payment{
+        width: 100% !important;
+    }
+  }
+  .modal
+  {
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, .3);
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .booking-payment{
+          width: 50%;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          row-gap: 10px;
+          .close-modal{
+            cursor: pointer;
+            text-align: center;
+            font-size: 21px;
+            .fa-regular::before{
+                font-size: 24px;
+                background-color: white;
+                border-radius: 50%;
+            }
+          }
+          .modal-body{  
+            height: 300px;
+            border-radius: 8px;
+            background-color: white;
+            padding: 15px;
+            h3{
+                text-align: center;
+            }
+            .success-icon{
+                width: 100%;
+                height: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+          }
+      }
+  }

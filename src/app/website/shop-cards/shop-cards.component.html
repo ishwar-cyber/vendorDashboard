@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="banner">
+        <img src="https://b.zmtcdn.com/data/o2_assets/e067a1cf0d3fe27b366402b98b994e9f1716296909.png" alt="">
+    </div>
+    <section>
+        <div class="filter">
+            <div class="list main-filter"><i class="fa-solid fa-filter"></i> Filter</div>
+            @for(list of filterList; track list.name){
+                <div class="list">{{list.name}} <i class="fa-solid fa-xmark" ></i></div>
+            }
+        </div>  
+    </section>
+    <!-- <google-map height="600px" width="800px" [options]="options"> </google-map> -->
+    <!-- shop card -->
+    <div class="shop_card">
+        @for(shop of salonShop; track $index){
+            <div class="card" (click)="redirectToShop(shop.userId)">
+                <img  src="https://images.pexels.com/photos/705255/pexels-photo-705255.jpeg?auto=compress&cs=tinysrgb&w=800" alt="banner" loading="lazy">
+                <div class="card-body">
+                    <h3>{{shop.vendorOutletName}}</h3> 
+                    <span>{{shop.rating}}</span>
+                </div>
+                <div class="specialist">
+                    @for(specialist of shop.specialists; track specialist){
+                        {{specialist}},
+                    }
+                 </div>
+                 
+                <div class="card-body address">
+                    <span>{{shop.city}}</span>
+                    <span>{{shop.distance}}</span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
