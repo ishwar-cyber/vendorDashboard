@@ -22,8 +22,8 @@
                     Vendor
                 </label>
                 <label>
-                    <input type="radio" value="User" name="userType" (change)="onUserTypeChange('User')" checked>
-                    User
+                    <input type="radio" value="Customer" name="userType" (change)="onUserTypeChange('Customer')" checked>
+                    Customer
                 </label>
             </div>
 
@@ -59,8 +59,6 @@
             <input type="email" id="shop_email" [formControl]="shop_email" required>
 
 
-
-
             <div class="services-container">
                 <h3>Select Services:</h3>
 
@@ -91,3 +89,20 @@
         </form>
     </div>
 </div>
+
+
+@if(this.successModal){
+    <div class="modal" >
+        <div class="booking-payment">
+            <div class="modal-body">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" viewBox="0 0 50 50" xml:space="preserve" width="200" height="100">
+                        <circle style="fill:#25AE88;" cx="25" cy="25" r="25"/>
+                        <polyline style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="  38,15 22,33 12,25 "/>
+                    </svg>
+                </div>
+                <h3>Registered Successfully</h3>
+            </div>
+        </div>
+    </div>
+}

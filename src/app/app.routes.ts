@@ -60,7 +60,8 @@ export const routes: Routes = [
                 path:'booking/:id', component:BookingComponent, title:'Booking Service'
             },
             {
-                path:'mybooking', component:MyBookingComponent, title:'Booking Service',canActivate: [gaurdGuard],
+                path:'mybooking', component:MyBookingComponent, title:'Booking Service',
+                // canActivate: [gaurdGuard],
             }
         ]
     },

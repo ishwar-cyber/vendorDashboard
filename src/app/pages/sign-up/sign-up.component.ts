@@ -15,11 +15,12 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent {
 
-  servicesList:any = [];
+  servicesList: any = [];
   onboardingForm: FormGroup;
-  userType: 'Vendor' | 'User' = 'User'; // Default to Vendor
+  userType: 'Vendor' | 'Customer' = 'Customer'
+  successModal = false;
 
-  ngOnInit(){
+  ngOnInit() {
     this.fetchMasterServices();
   }
 
@@ -42,12 +43,12 @@ export class SignUpComponent {
   shop_email = new FormControl('');
   provided_services = new FormControl('');
   services = new FormArray<FormControl<any>>([]);
-  role = new FormControl('USER');
+  role = new FormControl('CUSTOMER');
 
   // User Additional Details
   otherDetails = new FormControl('');
 
-  constructor(private userOnBoardingService: UserOnboardServiceService,private router:Router) {
+  constructor(private userOnBoardingService: UserOnboardServiceService, private router: Router) {
     this.onboardingForm = new FormGroup({
       mob: this.mob,
       name: this.name,
@@ -84,7 +85,7 @@ export class SignUpComponent {
     });
   }
 
-  onUserTypeChange(type: 'Vendor' | 'User') {
+  onUserTypeChange(type: 'Vendor' | 'Customer') {
     this.userType = type;
     if (this.userType === 'Vendor') {
       this.role.setValue('VENDOR');
@@ -99,11 +100,11 @@ export class SignUpComponent {
       this.shop_mobile.setValidators([Validators.required]);
       this.shop_email.setValidators([Validators.required]);
       this.services.setValidators([Validators.required])
-      this.otherDetails.clearValidators();
+      // this.otherDetails.clearValidators();
 
     }
     else {
-      this.role.setValue('USER');
+      this.role.setValue('CUSTOMER');
       this.vendorOutlet.clearValidators();
       this.pincode.clearValidators();
       this.state.clearValidators();
@@ -115,7 +116,7 @@ export class SignUpComponent {
       this.shop_mobile.clearValidators();
       this.shop_email.clearValidators();
       this.services.clearValidators();
-      this.otherDetails.setValidators([Validators.required]);
+      // this.otherDetails.setValidators([Validators.required]);
     }
   }
 
@@ -135,22 +136,24 @@ export class SignUpComponent {
     }
   }
 
-
-  onSubmit() {
-
-    this.userOnBoardingService.onboardVendor(this.onboardingForm.value).subscribe((response: any) => {
-      console.log(response);
-      if(response.status=="SUCCESS"){
-        // show pop-up for success
-        this.router.navigate(['/login'])
-      }
-      else{
-        // show error msg
-      }
-    });
-
-
+  onSuccessModalChange(b: boolean) {
+    this.successModal = b;
   }
 
 
+  onSubmit() {
+    this.userOnBoardingService.onboardVendor(this.onboardingForm.value).subscribe((response: any) => {
+      console.log(response);
+      if (response.status == "SUCCESS") {
+        this.successModal = true;
+        setTimeout(() => {
+          this.successModal = false;
+          this.router.navigate(['/login']);
+        }, 2000);
+      }
+      else {
+        // show error msg
+      }
+    });
+  }
 }
