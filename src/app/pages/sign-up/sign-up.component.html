@@ -4,8 +4,8 @@
         <h3>Registration</h3>
         <form [formGroup]="onboardingForm" (ngSubmit)="onSubmit()">
 
-            <label for="mob">Mobile Number:</label>
-            <input type="tel" id="mob" [formControl]="mob" required>
+            <label for="mobile">Mob Number:</label>
+            <input type="tel" id="mobile" [formControl]="mobile" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" [formControl]="password" required>
@@ -13,8 +13,8 @@
             <label for="name">Name:</label>
             <input type="text" id="name" [formControl]="name" required>
 
-            <label for="emailid">Email Id:</label>
-            <input type="text" id="emailid" [formControl]="emailid" required>
+            <label for="email">Email Id:</label>
+            <input type="text" id="email" [formControl]="email" required>
 
             <div class="usertype_radio">
                 <label>
@@ -52,7 +52,7 @@
             <label for="seats">Total Seats within Outlet:</label>
             <input type="number" id="seats" [formControl]="seats" min="1" required>
 
-            <label for="shop_mobile">Outlet Mobile Number:</label>
+            <label for="shop_mobile">Outlet mobileile Number:</label>
             <input type="tel" id="shop_mobile" [formControl]="shop_mobile" required>
 
             <label for="shop_email">Outlet Email:</label>

@@ -25,10 +25,10 @@ export class SignUpComponent {
   }
 
 
-  mob = new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]);
+  mobile = new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]);
   name = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]);
   password = new FormControl('', [Validators.required, Validators.minLength(6)]);
-  emailid = new FormControl('', [Validators.required, Validators.email]);
+  email = new FormControl('', [Validators.required, Validators.email]);
 
   // Vendor Additional Details
   vendorOutlet = new FormControl('');
@@ -50,10 +50,10 @@ export class SignUpComponent {
 
   constructor(private userOnBoardingService: UserOnboardServiceService, private router: Router) {
     this.onboardingForm = new FormGroup({
-      mob: this.mob,
-      name: this.name,
+      mobile: this.mobile,
+      userName: this.name,
       password: this.password,
-      emailid: this.emailid,
+      email: this.email,
       vendorOutlet: this.vendorOutlet,
       address: this.address,
       open: this.open,

@@ -28,11 +28,12 @@ export class UserProfileComponent {
   mob = new FormControl({ value: '', disabled: true }, [Validators.required, Validators.pattern(/^[0-9]{10}$/)]);
   name = new FormControl('', [Validators.required]);
   // emailid = new FormControl('', [Validators.required, Validators.email]);
-  vendorOutlet = new FormControl('');
-  pincode = new FormControl('');
+  vendorOutletName = new FormControl('');
+  pinCode = new FormControl('');
   state = new FormControl({ value: '', disabled: true });
   city = new FormControl('');
-  address = new FormControl('');
+  addressLine1 = new FormControl('');
+  addressLine2 = new FormControl('');
   open = new FormControl('');
   close = new FormControl('');
   seats = new FormControl('');
@@ -46,11 +47,12 @@ export class UserProfileComponent {
     mob: this.mob,
     name: this.name,
     // emailid: this.emailid,
-    vendorOutlet: this.vendorOutlet,
-    pincode: this.pincode,
+    vendorOutletName: this.vendorOutletName,
+    pinCode: this.pinCode,
     state: this.state,
     city: this.city,
-    address: this.address,
+    addressLine1: this.addressLine1,
+    addressLine2: this.addressLine2,
     openingTime: this.open,
     closingTime: this.close,
     noOfStaff: this.seats,
@@ -77,12 +79,13 @@ export class UserProfileComponent {
   }
 
   userProfileService: any
-  userId: String = "";
+  userId: any;
   router: any;
   constructor(userProfileService: UserProfileService, route: ActivatedRoute, router: Router) {
     this.userProfileService = userProfileService;
     this.router = router;
-    this.userId = String(route.snapshot.paramMap.get("userid"));
+    // this.userId = String(route.snapshot.paramMap.get("userid"));
+    this.userId = localStorage.getItem('vendorId');
   }
 
   fetchMasterServices() {
@@ -108,11 +111,12 @@ export class UserProfileComponent {
           mob: payload.mobile || '',
           name: payload.vendorOutletName || '',
           // emailid: payload.emailid || '',
-          vendorOutlet: payload.vendorOutletName || '',
-          pincode: payload.pinCode || '',
+          vendorOutletName: payload.vendorOutletName || '',
+          pinCode: payload.pinCode || '',
           state: payload.state || '',
           city: payload.city || '',
-          address: payload.addressLine1 + payload.addressLine2 || '',
+          addressLine1: payload.addressLine1 || '',
+          addressLine2: payload.addressLine2 || '',
           openingTime: payload.openingTime || '',
           closingTime: payload.closingTime || '',
           noOfStaff: payload.noOfStaff || '',

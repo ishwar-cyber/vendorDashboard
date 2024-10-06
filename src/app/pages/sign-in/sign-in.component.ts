@@ -37,7 +37,7 @@ export class SignInComponent implements OnInit {
     this.signInService.login(this.loginForm.value).subscribe((response:any)=>{
       console.log(response);
       if(response.status==="SUCCESS"){
-        this.router.navigate(["/website/Home"])
+        this.router.navigate(["/website/home"])
       }
     });
   }

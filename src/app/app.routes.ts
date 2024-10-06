@@ -40,7 +40,7 @@ export const routes: Routes = [
                 path:'booking', component:BookingComponent
             },
             {
-                path:'profile', component: AddStaffComponent //"Component name here"
+                path:'profile', component: UserProfileComponent
             },
         ]
     },
