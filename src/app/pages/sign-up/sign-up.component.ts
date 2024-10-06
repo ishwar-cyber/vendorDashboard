@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserOnboardServiceService } from './sign-up.service';
+import { Router } from '@angular/router';
 
 
 
@@ -14,18 +15,13 @@ import { UserOnboardServiceService } from './sign-up.service';
 })
 export class SignUpComponent {
 
-  // Define available services from API Get Call.
-  servicesList = [
-    { id: 1, name: 'Haircut' },
-    { id: 2, name: 'Shave' },
-    { id: 3, name: 'Facial' },
-    { id: 4, name: 'Hair Coloring' }
-  ];
-
-
+  servicesList:any = [];
   onboardingForm: FormGroup;
   userType: 'Vendor' | 'User' = 'User'; // Default to Vendor
 
+  ngOnInit(){
+    this.fetchMasterServices();
+  }
 
 
   mob = new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]);
@@ -51,7 +47,7 @@ export class SignUpComponent {
   // User Additional Details
   otherDetails = new FormControl('');
 
-  constructor(private userOnBoardingService: UserOnboardServiceService) {
+  constructor(private userOnBoardingService: UserOnboardServiceService,private router:Router) {
     this.onboardingForm = new FormGroup({
       mob: this.mob,
       name: this.name,
@@ -70,6 +66,21 @@ export class SignUpComponent {
       city: this.city,
       services: this.services,
       role: this.role
+    });
+  }
+
+
+  fetchMasterServices() {
+    this.userOnBoardingService.fetchMasterServices().subscribe((response: any) => {
+      if (response.status === "SUCCESS" && response.payload) {
+        this.servicesList = response.payload.map((service: { id: any; serviceName: any; isActive: any; }) => ({
+          id: service.id,
+          name: service.serviceName,
+          isActive: service.isActive
+        }));
+      } else {
+        console.error('Failed to fetch services', response.errorBean);
+      }
     });
   }
 
@@ -129,6 +140,13 @@ export class SignUpComponent {
 
     this.userOnBoardingService.onboardVendor(this.onboardingForm.value).subscribe((response: any) => {
       console.log(response);
+      if(response.status=="SUCCESS"){
+        // show pop-up for success
+        this.router.navigate(['/login'])
+      }
+      else{
+        // show error msg
+      }
     });
 
 

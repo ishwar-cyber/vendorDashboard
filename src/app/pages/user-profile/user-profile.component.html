@@ -16,11 +16,11 @@
       <label for="name">Name:</label>
       <input type="text" id="name" [formControl]="name" value="cs">
     </div>
-
+<!-- 
     <div class="form-group">
       <label for="emailid">Email Id:</label>
       <input type="text" id="emailid" [formControl]="emailid" required>
-    </div>
+    </div> -->
 
     @if(userType==='VENDOR'){
 
@@ -64,7 +64,7 @@
       <input type="number" id="seats" [formControl]="seats" min="1" required>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="shop_mobile">Outlet Mobile Number:</label>
       <input type="tel" id="shop_mobile" [formControl]="shop_mobile" required>
     </div>
@@ -72,7 +72,7 @@
     <div class="form-group">
       <label for="shop_email">Outlet Email:</label>
       <input type="email" id="shop_email" [formControl]="shop_email" required>
-    </div>
+    </div> -->
 
     <button type="button" (click)="openModal()" class="btn btn-primary">Add Services</button>
 
@@ -104,7 +104,7 @@
     }
 
     <div class="card-parent-2">
-      @for(service of this.existingAvailableServices;track service.id){
+      @for(service of existingAvailableServices;track service.id){
         <div class="service-card-2">
           <h3>{{ service.serviceName }}</h3>
           <p>Price: <strong>{{ service.price }}</strong></p>
@@ -116,9 +116,9 @@
     </div>
 
     <div class="card-parent">
-      @for(service of manuallyAddedServices;track service.id){
+      @for(service of manuallyAddedServices;track service.serviceId){
       <div class="service-card">
-        <h3>{{ service.name }}</h3>
+        <h3>{{ service.serviceName }}</h3>
         <p>Price: <strong>{{ service.price }}</strong></p>
         <button (click)="deleteService(service.id)" class="delete-button">🗑️</button>
       </div>
@@ -129,11 +129,9 @@
     </div>
 
     }
-
-
     <br>
 
-    <button type="submit" class="save-btn" [disabled]="!userProfileForm.valid" (click)="saveProfile()">Save</button>
+    <button type="submit" class="save-btn" (click)="saveProfile()">Save</button>
   </form>
 
 </div>

@@ -6,16 +6,16 @@
 
             <label for="mob">Mobile Number:</label>
             <input type="tel" id="mob" [formControl]="mob" required>
-    
+
             <label for="password">Password:</label>
             <input type="password" id="password" [formControl]="password" required>
-    
+
             <label for="name">Name:</label>
             <input type="text" id="name" [formControl]="name" required>
-    
+
             <label for="emailid">Email Id:</label>
             <input type="text" id="emailid" [formControl]="emailid" required>
-    
+
             <div class="usertype_radio">
                 <label>
                     <input type="radio" value="Vendor" name="userType" (change)="onUserTypeChange('Vendor')">
@@ -26,62 +26,65 @@
                     User
                 </label>
             </div>
-    
+
             @if(userType==='Vendor'){
             <label for="vendorOutlet">Vendor Outlet Name:</label>
             <input type="text" id="vendorOutlet" [formControl]="vendorOutlet" required>
-    
+
             <label for="address">Address:</label>
             <input type="text" id="address" [formControl]="address" required>
-    
+
             <label for="city">City:</label>
             <input type="text" id="city" [formControl]="city" required>
-    
+
             <label for="state">State:</label>
             <input type="text" id="state" [formControl]="state" required>
-    
+
             <label for="pincode">Pincode:</label>
             <input type="text" id="pincode" [formControl]="pincode" required>
-    
+
             <label for="open">Outlet Opening Time:</label>
             <input type="time" id="open" [formControl]="open" required>
-    
+
             <label for="close">Outlet Closing Time:</label>
             <input type="time" id="close" [formControl]="close" required>
-    
+
             <label for="seats">Total Seats within Outlet:</label>
             <input type="number" id="seats" [formControl]="seats" min="1" required>
-    
+
             <label for="shop_mobile">Outlet Mobile Number:</label>
             <input type="tel" id="shop_mobile" [formControl]="shop_mobile" required>
-    
+
             <label for="shop_email">Outlet Email:</label>
             <input type="email" id="shop_email" [formControl]="shop_email" required>
-    
-            <label>Services Provided:</label>
-    
-            <div class="service-item">
-                
-                @for (item of servicesList; track item.name) {
-                    <input type="checkbox" [value]="item.id" (change)="onServiceChange(item.id,$event)">
-                    {{item.name }}
+
+
+
+
+            <div class="services-container">
+                <h3>Select Services:</h3>
+
+                <div class="service-item">
+
+                    @for (item of this.servicesList; track item.id) {
+                    <div class="service-row">
+                        <input type="checkbox" [value]="item.id" (change)="onServiceChange(item.id, $event)">
+                        <span class="service-name">{{ item.name }}</span>
+                        <input type="number" class="service-price" placeholder="Enter Price" />
+                    </div>
                     } @empty {
                     <li>No Services available in Master</li>
-                }
+                    }
+                </div>
             </div>
-    
-    
+
+
             @if(services.invalid && (services.dirty || services.touched)){
-                <small class="error">At least one service must be selected.</small>
+            <small class="error">At least one service must be selected.</small>
             }
-    
+
             }
-    
-            @else{
-            <label for="otherDetails">Other Details:</label>
-            <input type="text" id="otherDetails" [formControl]="otherDetails">
-            }
-    
+
             <br>
             <br>
             <button type="submit">Submit</button>

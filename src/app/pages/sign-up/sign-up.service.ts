@@ -10,18 +10,24 @@ export class UserOnboardServiceService {
   vendorOnBoardingUrl = "http://localhost:8080/user/signUp";
 
 
-  constructor(private httpClient:HttpClient) { 
+  constructor(private httpClient: HttpClient) {
 
   }
 
 
-  onboardVendor(body:any):Observable<any>{
+  fetchMasterServicesUrl = "http://localhost:8081/service";
 
-    let headers= new HttpHeaders({
-      "Content-Type":"application/json"
+  fetchMasterServices(): Observable<any> {
+    return this.httpClient.get<any>(this.fetchMasterServicesUrl);
+  }
+
+  onboardVendor(body: any): Observable<any> {
+
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json"
     })
-    console.log('Body is ' , body);
-    return this.httpClient.post<any>(this.vendorOnBoardingUrl,body,{headers:headers});
+    console.log('Body is ', body);
+    return this.httpClient.post<any>(this.vendorOnBoardingUrl, body, { headers: headers });
   }
 
 
