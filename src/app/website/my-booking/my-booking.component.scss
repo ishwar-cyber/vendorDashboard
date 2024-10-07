@@ -34,4 +34,23 @@
         //     }
         // }
     }
+
+    
+.actions
+{
+    display: flex;
+    /* background-color: yellow; */
+    column-gap: 15px;
+    /* border: none */
+}
+
+.update
+{
+    color: green;
+}
+
+.delete
+{
+    color: red;
+}
 }

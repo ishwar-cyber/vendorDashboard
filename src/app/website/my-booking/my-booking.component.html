@@ -3,21 +3,38 @@
         <thead>
           <tr>
             <th>Sr.no</th>
-            <th>Booking Id</th>
+            <!-- <th>Booking Id</th> -->
             <th>Shop Name</th>
             <th>Services</th>
+            <th>Time Slot</th>
             <th>Address</th>
+            <th>Cancel Booking</th>
           </tr>
         </thead>
         <tbody>
+          @for (serviceHistory of customerBookingResponse?.payload?.serviceHistory; track $index) {
+            
+            @for (service of serviceHistory.services; let i = $index; track $index) {
+              
           <tr>
-            <td>1</td>
-            <td>1234567</td>
-            <td>Domenic</td>
-            <td>88,110</td>
-            <td>dcode</td>
+            <td>{{$index+1}}</td>
+            <!-- <td>{{1234567}}</td> -->
+            <td>{{serviceHistory.vendorName}}</td>
+            <td>{{service.serviceName}}</td>
+            <td>{{serviceHistory.date}} 
+              <!-- <p> -->
+                {{service.time}}
+              <!-- </p> -->
+            </td>
+            <td>{{serviceHistory.vendorAddress}}
+                <p> {{serviceHistory.vendorPhone}}</p>
+            </td>
+            
+            <td><i class="fa-solid fa-trash delete actions" (click)=deleteBooking(customerId,$index)></i></td>
           </tr>
-          <tr class="active-row">
+        }
+      }
+          <!-- <tr class="active-row">
             <td>2</td>
             <td>1234567</td>
             <td>Sally</td>
@@ -43,7 +60,7 @@
             <td>Nick</td>
             <td>52,300</td>
             <td>dcode</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
 </div>

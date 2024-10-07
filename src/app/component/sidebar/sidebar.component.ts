@@ -16,25 +16,25 @@ export class SidebarComponent {
       name: 'Dashboard',
       redirectTo:'/dashboard'
     },
-    {
-      icon:'fa-solid fa-plus',
-      name: 'Add Shop',
-      redirectTo:'/dashboard/addservice'
-    },
+    // {
+    //   icon:'fa-solid fa-plus',
+    //   name: 'Add Shop',
+    //   redirectTo:'/dashboard/addservice'
+    // },
     {
       icon:'fa-solid fa-book',
       name: 'Booking',
       redirectTo:'/dashboard/booking'
     },
-    {
-      icon:'',
-      name: 'Add staff',
-      redirectTo:'/dashboard/addstaff'
-    },
-    {
-      icon:'',
-      name: 'Dashboard',
-      redirectTo:'dashboard'
-    }
+    // {
+    //   icon:'',
+    //   name: 'Add staff',
+    //   redirectTo:'/dashboard/addstaff'
+    // },
+    // {
+    //   icon:'',
+    //   name: 'Dashboard',
+    //   redirectTo:'dashboard'
+    // }
   ]
 }
