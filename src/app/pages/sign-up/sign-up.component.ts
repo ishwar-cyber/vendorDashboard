@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserOnboardServiceService } from './sign-up.service';
 import { Router } from '@angular/router';
+import { CalculateDistance } from '../../common/calculate-distance';
 
 
 
@@ -19,9 +20,23 @@ export class SignUpComponent {
   onboardingForm: FormGroup;
   userType: 'Vendor' | 'Customer' = 'Customer'
   successModal = false;
+  lat: number = 0;
+  long: number = 0;
+  distance: number = 0;
+
 
   ngOnInit() {
     this.fetchMasterServices();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.lat = position.coords.latitude;
+        this.long = position.coords.longitude;
+        console.log(this.lat,this.long);
+      }, (error) => {
+      })
+    }
+
+
   }
 
 
@@ -31,7 +46,7 @@ export class SignUpComponent {
   email = new FormControl('', [Validators.required, Validators.email]);
 
   // Vendor Additional Details
-  vendorOutlet = new FormControl('');
+  vendorOutletName = new FormControl('');
   pincode = new FormControl('');
   state = new FormControl('');
   city = new FormControl('');
@@ -42,8 +57,13 @@ export class SignUpComponent {
   shop_mobile = new FormControl('');
   shop_email = new FormControl('');
   provided_services = new FormControl('');
+  serviceId = new FormControl('');
+  price = new FormControl(0);
   services = new FormArray<FormControl<any>>([]);
   role = new FormControl('CUSTOMER');
+  latitude = new FormControl('');
+  longitude = new FormControl('');
+
 
   // User Additional Details
   otherDetails = new FormControl('');
@@ -54,7 +74,7 @@ export class SignUpComponent {
       userName: this.name,
       password: this.password,
       email: this.email,
-      vendorOutlet: this.vendorOutlet,
+      vendorOutletName: this.vendorOutletName,
       address: this.address,
       open: this.open,
       close: this.close,
@@ -66,7 +86,9 @@ export class SignUpComponent {
       state: this.state,
       city: this.city,
       services: this.services,
-      role: this.role
+      role: this.role,
+      latitude: this.latitude,
+      longitude: this.longitude
     });
   }
 
@@ -89,8 +111,8 @@ export class SignUpComponent {
     this.userType = type;
     if (this.userType === 'Vendor') {
       this.role.setValue('VENDOR');
-      this.vendorOutlet.setValidators([Validators.required]);
-      this.pincode.setValidators([Validators.required]);
+      this.vendorOutletName.setValidators([Validators.required]);
+      this.pincode.setValidators([Validators.required, Validators.pattern(/^[0-9]{6}$/)]);
       this.state.setValidators([Validators.required]);
       this.city.setValidators([Validators.required]);
       this.address.setValidators([Validators.required]);
@@ -101,11 +123,10 @@ export class SignUpComponent {
       this.shop_email.setValidators([Validators.required]);
       this.services.setValidators([Validators.required])
       // this.otherDetails.clearValidators();
-
     }
     else {
       this.role.setValue('CUSTOMER');
-      this.vendorOutlet.clearValidators();
+      this.vendorOutletName.clearValidators();
       this.pincode.clearValidators();
       this.state.clearValidators();
       this.city.clearValidators();
@@ -122,12 +143,10 @@ export class SignUpComponent {
 
 
   // Method to handle the selection of services
-  onServiceChange(serviceId: number, event: Event) {
-
+  onServiceChange(serviceId: number, servicePrice: number, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
-
     if (isChecked) {
-      this.services.push(new FormControl(serviceId));
+      // this.services.push(new FormControl({ serviceId, servicePrice }));
     } else {
       const index = this.services.controls.findIndex(x => x.value === serviceId);
       if (index !== -1) {
@@ -136,12 +155,22 @@ export class SignUpComponent {
     }
   }
 
+  onBlur(id: number, event: any) {
+    let value = event.target.value;
+    this.services.push(new FormControl({ serviceId: id, price: value }));
+  }
+
   onSuccessModalChange(b: boolean) {
     this.successModal = b;
   }
 
 
   onSubmit() {
+
+    // add latitude and longitude in form.
+    this.latitude.setValue(this.lat.toString());
+    this.longitude.setValue(this.long.toString());
+
     this.userOnBoardingService.onboardVendor(this.onboardingForm.value).subscribe((response: any) => {
       console.log(response);
       if (response.status == "SUCCESS") {

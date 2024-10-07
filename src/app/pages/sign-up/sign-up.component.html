@@ -6,15 +6,40 @@
 
             <label for="mobile">Mob Number:</label>
             <input type="tel" id="mobile" [formControl]="mobile" required>
+            @if(this.onboardingForm.get('mobile')?.invalid && (this.onboardingForm.get('mobile')?.dirty ||
+            this.onboardingForm.get('mobile')?.touched)) {
+            <div>
+                <small class="error">Mobile number must be 10 digits.</small>
+            </div>
+            }
 
             <label for="password">Password:</label>
             <input type="password" id="password" [formControl]="password" required>
+            @if(this.onboardingForm.get('password')?.invalid && (this.onboardingForm.get('password')?.dirty ||
+            this.onboardingForm.get('password')?.touched)) {
+            <div>
+                <small class="error">Password must be at least 6 characters long.</small>
+            </div>
+            }
 
             <label for="name">Name:</label>
             <input type="text" id="name" [formControl]="name" required>
+            @if(this.onboardingForm.get('userName')?.invalid && (this.onboardingForm.get('userName')?.dirty ||
+            this.onboardingForm.get('userName')?.touched)) {
+            <div>
+                <small class="error">Name can only contain letters and spaces.</small>
+            </div>
+            }
 
             <label for="email">Email Id:</label>
             <input type="text" id="email" [formControl]="email" required>
+            @if(this.onboardingForm.get('email')?.invalid && (this.onboardingForm.get('email')?.dirty ||
+            this.onboardingForm.get('email')?.touched)) {
+            <div>
+                <small class="error">Please enter a valid email address.</small>
+            </div>
+            }
+
 
             <div class="usertype_radio">
                 <label>
@@ -22,53 +47,116 @@
                     Vendor
                 </label>
                 <label>
-                    <input type="radio" value="Customer" name="userType" (change)="onUserTypeChange('Customer')" checked>
+                    <input type="radio" value="Customer" name="userType" (change)="onUserTypeChange('Customer')"
+                        checked>
                     Customer
                 </label>
             </div>
 
             @if(userType==='Vendor'){
-            <label for="vendorOutlet">Vendor Outlet Name:</label>
-            <input type="text" id="vendorOutlet" [formControl]="vendorOutlet" required>
+            <label for="vendorOutletName">Vendor Outlet Name:</label>
+            <input type="text" id="vendorOutletName" [formControl]="vendorOutletName" required>
+            @if(this.onboardingForm.get('vendorOutletName')?.invalid && (this.onboardingForm.get('vendorOutletName')?.dirty ||
+            this.onboardingForm.get('vendorOutletName')?.touched)) {
+            <div>
+                <small class="error">Vendor outlet name is required.</small>
+            </div>
+            }
 
             <label for="address">Address:</label>
             <input type="text" id="address" [formControl]="address" required>
+            @if(this.onboardingForm.get('address')?.invalid && (this.onboardingForm.get('address')?.dirty ||
+            this.onboardingForm.get('address')?.touched)) {
+            <div>
+                <small class="error">Address is required.</small>
+            </div>
+            }
+
 
             <label for="city">City:</label>
             <input type="text" id="city" [formControl]="city" required>
+            @if(this.onboardingForm.get('city')?.invalid && (this.onboardingForm.get('city')?.dirty ||
+            this.onboardingForm.get('city')?.touched)) {
+            <div>
+                <small class="error">City is required.</small>
+            </div>
+            }
+
 
             <label for="state">State:</label>
             <input type="text" id="state" [formControl]="state" required>
+            @if(this.onboardingForm.get('state')?.invalid && (this.onboardingForm.get('state')?.dirty ||
+            this.onboardingForm.get('state')?.touched)) {
+            <div>
+                <small class="error">State is required.</small>
+            </div>
+            }
 
             <label for="pincode">Pincode:</label>
             <input type="text" id="pincode" [formControl]="pincode" required>
+            @if(this.onboardingForm.get('pincode')?.invalid && (this.onboardingForm.get('pincode')?.dirty ||
+            this.onboardingForm.get('pincode')?.touched)) {
+            <div>
+                <small class="error">Pincode must be 6 digits.</small>
+            </div>
+            }
 
             <label for="open">Outlet Opening Time:</label>
             <input type="time" id="open" [formControl]="open" required>
+            @if(this.onboardingForm.get('open')?.invalid && (this.onboardingForm.get('open')?.dirty ||
+            this.onboardingForm.get('open')?.touched)) {
+            <div>
+                <small class="error">Opening time is required.</small>
+            </div>
+            }
 
             <label for="close">Outlet Closing Time:</label>
             <input type="time" id="close" [formControl]="close" required>
+            @if(this.onboardingForm.get('close')?.invalid && (this.onboardingForm.get('close')?.dirty ||
+            this.onboardingForm.get('close')?.touched)) {
+            <div>
+                <small class="error">Closing time is required.</small>
+            </div>
+            }
 
             <label for="seats">Total Seats within Outlet:</label>
             <input type="number" id="seats" [formControl]="seats" min="1" required>
+            @if(this.onboardingForm.get('seats')?.invalid && (this.onboardingForm.get('seats')?.dirty ||
+            this.onboardingForm.get('seats')?.touched)) {
+            <div>
+                <small class="error">Total seats must be at least 1.</small>
+            </div>
+            }
 
-            <label for="shop_mobile">Outlet mobileile Number:</label>
+
+            <label for="shop_mobile">Outlet Mobile Number:</label>
             <input type="tel" id="shop_mobile" [formControl]="shop_mobile" required>
+            @if(this.onboardingForm.get('shop_mobile')?.invalid && (this.onboardingForm.get('shop_mobile')?.dirty ||
+            this.onboardingForm.get('shop_mobile')?.touched)) {
+            <div>
+                <small class="error">Outlet mobile number must be 10 digits.</small>
+            </div>
+            }
 
             <label for="shop_email">Outlet Email:</label>
             <input type="email" id="shop_email" [formControl]="shop_email" required>
+            @if(this.onboardingForm.get('shop_email')?.invalid && (this.onboardingForm.get('shop_email')?.dirty ||
+            this.onboardingForm.get('shop_email')?.touched)) {
+            <div>
+                <small class="error">Please enter a valid outlet email address.</small>
+            </div>
+            }
 
 
             <div class="services-container">
                 <h3>Select Services:</h3>
 
                 <div class="service-item">
-
                     @for (item of this.servicesList; track item.id) {
                     <div class="service-row">
-                        <input type="checkbox" [value]="item.id" (change)="onServiceChange(item.id, $event)">
+                        <input type="checkbox" [value]="item.id" (change)="onServiceChange(item.id,item.price, $event)">
                         <span class="service-name">{{ item.name }}</span>
-                        <input type="number" class="service-price" placeholder="Enter Price" />
+                        <input type="number" class="service-price" placeholder="Enter Price" (blur)="onBlur(item.id,$event)" />
                     </div>
                     } @empty {
                     <li>No Services available in Master</li>
@@ -92,17 +180,20 @@
 
 
 @if(this.successModal){
-    <div class="modal" >
-        <div class="booking-payment">
-            <div class="modal-body">
-                <div class="success-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" viewBox="0 0 50 50" xml:space="preserve" width="200" height="100">
-                        <circle style="fill:#25AE88;" cx="25" cy="25" r="25"/>
-                        <polyline style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="  38,15 22,33 12,25 "/>
-                    </svg>
-                </div>
-                <h3>Registered Successfully</h3>
+<div class="modal">
+    <div class="booking-payment">
+        <div class="modal-body">
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                    id="Capa_1" viewBox="0 0 50 50" xml:space="preserve" width="200" height="100">
+                    <circle style="fill:#25AE88;" cx="25" cy="25" r="25" />
+                    <polyline
+                        style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                        points="  38,15 22,33 12,25 " />
+                </svg>
             </div>
+            <h3>Registered Successfully</h3>
         </div>
     </div>
+</div>
 }
