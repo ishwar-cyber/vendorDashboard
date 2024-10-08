@@ -11,7 +11,7 @@ import { ShopService } from '../shop-cards/shop.service';
 @Component({
   selector: 'app-shop-page',
   standalone: true,
-  imports: [RatingComponent,RouterLink,CommonModule, BookingComponent,GoogleMapsModule],
+  imports: [RatingComponent,RouterLink,CommonModule, BookingComponent, GoogleMapsModule],
   templateUrl: './shop-page.component.html',
   styleUrl: './shop-page.component.scss'
 })
@@ -19,8 +19,6 @@ export class ShopPageComponent implements OnInit{
   
   shopLat = 18.5181095942;
   shopLon = 73.8532665869;
-  // shopLat = 18.561958;
-  // shopLon = 73.916926;
   public seletedServiceId:any = [];
   public selectCheckBox:boolean = false
   public vendorId: any;
@@ -33,13 +31,41 @@ export class ShopPageComponent implements OnInit{
   shopService = inject(ShopService);
   distanceCal = CalculateDistance
 
+  constructor(){
+      //   const map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
+      //     center: { lat: this.shopLat, lng: this.shopLon },
+      //     zoom: 15,
+      //   });
+      //   // Optional: Add a marker to the map
+      //   const marker = new google.maps.Marker({
+      //     position: { lat: this.shopLat, lng: this.shopLon },
+      //     map: map,
+      //     title: 'Shop Location',
+      //   });
+      // if(navigator.geolocation){
+      //   navigator.geolocation.getCurrentPosition((position)=>{
+      //     // const map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
+      //     //   center: { lat: this.shopLat, lng: this.shopLon },
+      //     //   zoom: 15,
+      //     // });
+         
+      //      this.distance = CalculateDistance.calculateDistance(position.coords.latitude, position.coords.longitude,this.shopLat,this.shopLon);
+      //   },(error)=>{
+      //     if(error.PERMISSION_DENIED){
+            
+      //     }
+      //   })
+      // }
+
+  }
   ngOnInit(): void {
-    this.getLocation();
     this.sharedService.getData().subscribe((vendorId)=>{
      this.vendorId = vendorId ? vendorId : localStorage.getItem('vendorId');
     })
     this.shopService.getVendorById(this.vendorId).subscribe((res)=>{
       this.vendorService = res.payload;
+      console.log('this.vendorService', this.vendorService);
+      
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0'); // Get hours and pad with zero
       const minutes = String(now.getMinutes()).padStart(2, '0'); // Get minutes and pad with zero
@@ -52,29 +78,13 @@ export class ShopPageComponent implements OnInit{
     });
     localStorage.removeItem('selectedServices');
   }
-
-  public getLocation(){
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition((position)=>{
-        const map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
-          center: { lat: this.shopLat, lng: this.shopLon },
-          zoom: 15,
-        });
-         this.distance = CalculateDistance.calculateDistance(position.coords.latitude, position.coords.longitude,this.shopLat,this.shopLon);
-      },(error)=>{
-        if(error.PERMISSION_DENIED){
-          
-        }
-      })
-    }
-  }
   public selectService(service: any){
    service.selected = ! service.selected;
     if(service.selected){
-      this.seletedServiceId?.push(service.id);
+      this.seletedServiceId?.push(service.serviceId);
     } else{
       let bookingId =  this.seletedServiceId.findIndex((booking:any)=>{
-        return booking.id === service.id;
+        return booking.id === service.serviceId;
       });
      this.seletedServiceId.splice(bookingId,1);
     }

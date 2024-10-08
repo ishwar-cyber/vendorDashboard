@@ -1,12 +1,16 @@
 <div class="container">
     <div class="banner">
-        <img src="https://b.zmtcdn.com/data/o2_assets/e067a1cf0d3fe27b366402b98b994e9f1716296909.png" alt="">
+        <img src="https://fsdproject.s3.ap-south-1.amazonaws.com/Default.png" alt="">
     </div>
     <section>
         <div class="filter">
-            <div class="list main-filter" (click)="openFilter()"><i class="fa-solid fa-filter"></i> Filter</div>
+            <div class="list main-filter" (click)="openFilter()">
+                <i class="fa-solid fa-filter"></i> Filter
+            </div>
             @for(list of filterList; track list.name){
-                <div class="list">{{list.name}} <i class="fa-solid fa-xmark" ></i></div>
+                <div class="list" [ngClass]="seletedFilter(list) ? 'seleted': 'list'" (click)="applyFilter(list.name)">{{list.name}} 
+                    <i class="fa-solid fa-xmark" ></i>
+                </div>
             }
         </div>  
     </section>
@@ -27,8 +31,9 @@
                  </div>
                  
                 <div class="card-body address">
+                    <p><span>{{shop.addresLine1}}</span>,<span>{{shop.addressLine1}}</span></p>
                     <span>{{shop.city}}</span>
-                    <span>{{shop.distance}}</span>
+                    <span>{{distance | number :'1.0-1'}} KM</span>
                 </div>
             </div>
         }

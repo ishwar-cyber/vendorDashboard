@@ -1,6 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
 *{
     margin: 0px;
     padding: 0px;
     box-sizing:border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+  // Table CSS
+  .content-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    thead tr {
+        background-color: #405189;
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+    }
+    th, td {
+        padding: 12px 15px;
+    }
+    tbody tr {
+        border-bottom: 1px solid #dddddd;
+        &:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+         .action{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            column-gap: 10px;
+            i:hover{
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// drawer
+
+.modal{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .booking-payment{
+        width: 50%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        .close-modal{
+          cursor: pointer;
+          text-align: center;
+          font-size: 21px;
+          .fa-regular::before{
+              font-size: 24px;
+              background-color: white;
+              border-radius: 50%;
+          }
+        }
+        .modal-body{  
+          height: auto;
+          border-radius: 8px;
+          background-color: white;
+          padding: 15px;
+          h3{
+              text-align: center;
+          }
+          .success-icon{
+              width: 100%;
+              height: 200px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+          }
+        }
+    }
+}
+
+.btn{
+    background-color: #daf4f0;
+    color: #009879;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    &:hover{
+        background-color: #009879;
+        color: white;
+    }
 }

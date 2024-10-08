@@ -32,15 +32,20 @@ export class BookingComponent implements OnInit{
   public modalVisible = false;
   public weekDays: Date[] = [];
   public selectTimeService: any =[];
-
+  public vendorId: any;
   bookingService = inject(BookingService);
   sharedService = inject(SharedService);
   router = inject(Router)
 
   ngOnInit(): void {
-     this.sharedService.getData().subscribe((res)=>{
+    this.vendorId = localStorage.getItem('vendorId')
+    this.sharedService.getData().subscribe((res)=>{
       this.vendorServiceKey =res; 
     });
+   
+    this.bookingService.getBookingSlot(this.vendorId).subscribe((slots)=>{
+      console.log('res slots', slots);
+    })
     let today = new Date();
     this.weekDays = Array.from({length: 7},(_,index)=>{
       const date = new Date(today);
@@ -144,20 +149,21 @@ export class BookingComponent implements OnInit{
     if(authToken){
       for(let i = 0; i < this.vendorServiceKey.length; i++){
         this.selectTimeService.push({
-          vendorServiceKey: this.vendorServiceKey[i],
+          serviceKey: this.vendorServiceKey[i],
           time: this.bookedTime[i] || ""
         })
       }
       const payload = {
         date: this.selectedDay,
-        serviceBookingList:  this.selectTimeService, //[...this.selectedTime,{venderServiceKey:this.vendorServiceKey}],
+        services:  this.selectTimeService, //[...this.selectedTime,{venderServiceKey:this.vendorServiceKey}],
         paymentStatus: "pending",
         paymentMode: "cash",
         isActive: true
       };
       this.modalVisible = true;
       this.selectedTime = new Set();
-      this.bookingService.createBooking(payload).subscribe((response)=>{
+      let cust = 'CUC7E1218A26FDC706';
+      this.bookingService.createBooking(payload,this.vendorId, cust).subscribe((response)=>{
         if(response.hasOwnProperty('error')){
         
         }

@@ -12,13 +12,13 @@ export class SidebarComponent {
 
   public sidebarList =[
     {
-      icon:'',
+      icon:'fa-solid fa-house',
       name: 'Dashboard',
       redirectTo:'/dashboard'
     },
     {
       icon:'fa-solid fa-plus',
-      name: 'Add Shop',
+      name: 'Add Service',
       redirectTo:'/dashboard/addservice'
     },
     {

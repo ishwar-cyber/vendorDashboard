@@ -1,21 +1,27 @@
-.header-main{
-    width: 100%;
-}
-.main{
-    width: 100%;
+.dashboard{
     display: flex;
-    flex-direction: row;
-    column-gap: 20px;
-    .sidebar{
-        width: 20%;
-        height: 100vh;
-        background-color: aqua;
-        border-radius: 8px;
-        padding: 20px;
+    flex-direction: column;
+    row-gap: 20px;
+    .header-main{
+        width: 100%;
     }
-    .apnel-main{
-        width: 80%;
-        height: 100vh;
-        padding: 20px;
+    .main{
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: row;
+        column-gap: 20px;
+        .sidebar{
+            background-color: #405189;
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .apnel-main{
+            width: 80%;
+            padding: 20px;
+            background-color:#f3f3f9;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
     }
 }

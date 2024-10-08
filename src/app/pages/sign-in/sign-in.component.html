@@ -6,14 +6,25 @@
             <div class="flex-container">
                 <div class="flex-item">
                     <label for="phone">Mobile Number</label>
-                    <input type="tel" id="phone" placeholder="Ex.9876555555" formControlName="mobile">
+                    <input type="tel" id="phone" placeholder="Ex.9876555555" maxlength="10" formControlName="mobile">
                 </div>
-                <div class="error">
-                    Plaese enter your mobile number
-                </div>
+                @if(loginForm.controls['mobile']?.invalid && (loginForm.controls['mobile']?.dirty || loginForm.controls['mobile']?.touched)){
+                    <div class="error">
+                        @if((loginForm?.controls['mobile']?.errors?.required && !loginForm?.controls['mobile']?.errors?.invalidMobile)){
+                            <div>
+                                Plaese enter your mobile number
+                            </div>
+                        }
+                        @if((loginForm?.controls['mobile']?.errors?.invalidMobile && !loginForm?.controls['mobile']?.errors?.required)){
+                            <div>
+                                Plaese enter mobile number start with 6,7,8,9
+                            </div>
+                        }
+                    </div>
+                }
                 <div class="flex-item">
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Ex.*******" formControlName="password">
+                    <input type="password" id="password" placeholder="Ex.*******"  formControlName="password">
                 </div>
                 @if(loginForm.controls['password']?.invalid && (loginForm.controls['password']?.dirty || loginForm.controls['password']?.touched)){
                     <div class="error">
@@ -27,12 +38,17 @@
                                 Plaese enter your password max 8 character
                             </div>
                         }
-                    </div>   
-                }       
+                    </div>
+                }
             </div>
             <div class="login-cta">
                 <button type="button" (click)="login()">Login</button>
             </div>
+            <!-- <app-drawer [drawer]="drawerId">
+                <div>
+                    ishwar
+                </div>
+            </app-drawer> -->
         </form>
     </div>
 </div>

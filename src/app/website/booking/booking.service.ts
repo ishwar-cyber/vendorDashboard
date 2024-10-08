@@ -6,11 +6,16 @@ import { Injectable } from '@angular/core';
 })
 export class BookingService {
 
-  bookingUrl = 'http://localhost:8080/booking';
+  bookingUrl = 'http://localhost:8082/booking';
+  getBookingSlotUrl = 'http://localhost:8080/';
 
   constructor(private httpClient: HttpClient) { }
 
-  public createBooking(payload: any){
-    return this.httpClient.post(this.bookingUrl, payload);
+  public getBookingSlot(vendorId:any){
+   return this.httpClient.get(this.getBookingSlotUrl);
+  }
+  public createBooking(payload: any,vendorId:any,customerId:any){
+    let url = this.bookingUrl+`/${vendorId}?customerId=${customerId}`;
+    return this.httpClient.post(url, payload);
   }
 }

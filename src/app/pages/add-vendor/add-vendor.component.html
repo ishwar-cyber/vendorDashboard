@@ -1,28 +1,102 @@
 <div class="vendor">
-    <h3>Add Service</h3>
-    <div class="form-container">
-        <form>
-            <div class="flex-container">
-                <div class="flex-item">
-                    <label for="first-name">First Name</label>
-                    <input type="text" id="first-name" name="first-name" required>
-                </div>
-                <div class="flex-item">
-                    <label for="last-name">Last Name</label>
-                    <input type="text" id="last-name" name="last-name" required>
-                </div>
-            </div>
-            <div class="flex-container">
-                <div class="flex-item">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="flex-item">
-                    <label for="phone">Phone</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+    <div class="add-service">
+      <button type="button" (click)="addServices()"><i class="fa-solid fa-plus"></i> Add Services</button>
     </div>
+    <!-- Service Table -->
+    <div class="table-search">
+      <form [formGroup]="searchForm">
+          <label for="">Search: </label>
+          <input type="search" class="search-input" formControlName="search" >
+      </form>
+    </div>
+    <table class="content-table">
+        <thead>
+          <tr>
+            <th>Sr.no</th>
+            <th>Service Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Hair Cut</td>
+            <td>120</td>
+            <td>NA</td>
+            <td class="action">
+                <i class="fa-solid fa-pencil" (click)="editService()"></i>
+                <i class="fa-solid fa-trash" (click)="deleteService()"></i>
+            </td>
+          </tr>
+          <tr class="active-row">
+            <td>2</td>
+            <td>1234567</td>
+            <td>Sally</td>
+            <td>72,400</td>
+            <td>Students</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>1234567</td>
+            <td>Nick</td>
+            <td>52,300</td>
+            <td>dcode</td>
+          </tr>
+          <tr class="active-row">
+            <td>4</td>
+            <td>1234567</td>
+            <td>Sally</td>
+            <td>72,400</td>
+            <td>Students</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Nick</td>
+            <td>52,300</td>
+            <td>dcode</td>
+          </tr>
+          
+        </tbody>
+    </table>
 </div>
+
+@if(openFormDrawer){
+  <div class="modal" >
+    <div class="booking-payment">
+        <div class="close-modal" (click)="hideModal()">
+            <i class="fa-regular fa-circle-xmark"></i>
+        </div>
+        <div class="modal-body">
+            <ng-content>
+              <div class="form-container">
+                <h3>Add Service</h3>
+                <form class="form" [formGroup]="serviceForm">
+                    <div class="flex-container">
+                        <div class="flex-item">
+                            <label for="service">Service Name</label>
+                            <input type="text" id="service" formControlName="service">
+                        </div>
+                        <div class="flex-item">
+                            <label for="price">Price</label>
+                            <input type="number" id="price" formControlName="price">
+                        </div>
+                        <div>
+                            <div class="flex-item">
+                                <label for="file">Service Cover photo</label>
+                                <input type="file" id="file" formControlName="serviceImage">
+                            </div>
+                        </div>
+                        <div class="service-cta">
+                            <button type="button" class="btn" (click)="addService()">Submit</button>
+                        </div>
+                    </div>
+                    
+                </form>
+              </div>
+            </ng-content>
+        </div>
+    </div>
+  </div>
+}

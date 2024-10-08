@@ -1,1 +1,97 @@
-<p>add-staff works!</p>
+<div class="add-staff">
+    <div class="staff-cta">
+        <button type="button" class="btn" (click)="openStaffForm()"><i class="fa-solid fa-plus"></i> Add Services</button>
+    </div>
+    <!-- Service Table -->
+    <table class="content-table">
+        <thead>
+            <tr>
+            <th>Sr.no</th>
+            <th>Service Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>1</td>
+            <td>Hair Cut</td>
+            <td>120</td>
+            <td>NA</td>
+            <td class="action">
+                <!-- <i class="fa-solid fa-pencil" (click)="editService()"></i> -->
+                <i class="fa-solid fa-trash" (click)="deleteService()"></i>
+            </td>
+            </tr>
+            <tr class="active-row">
+            <td>2</td>
+            <td>1234567</td>
+            <td>Sally</td>
+            <td>72,400</td>
+            <td>Students</td>
+            </tr>
+            <tr>
+            <td>3</td>
+            <td>1234567</td>
+            <td>Nick</td>
+            <td>52,300</td>
+            <td>dcode</td>
+            </tr>
+            <tr class="active-row">
+            <td>4</td>
+            <td>1234567</td>
+            <td>Sally</td>
+            <td>72,400</td>
+            <td>Students</td>
+            </tr>
+            <tr>
+            <td>4</td>
+            <td>Nick</td>
+            <td>52,300</td>
+            <td>dcode</td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+@if(openFormDrawer){
+    <div class="modal" >
+      <div class="booking-payment">
+          <div class="close-modal" (click)="hideModal()">
+              <i class="fa-regular fa-circle-xmark"></i>
+          </div>
+          <div class="modal-body">
+              <ng-content>
+                <div class="form-container">
+                  <h3>Add Service</h3>
+                  <form class="form" [formGroup]="staffForm">
+                      <div class="flex-container">
+                          <div class="flex-item">
+                              <label for="service">Name</label>
+                              <input type="text" id="service" formControlName="name" placeholder="Enter your full name">
+                          </div>
+                          <div class="flex-item">
+                              <label for="number">Mobile number</label>
+                              <input type="tel" id="number" formControlName="number" placeholder="Enter your mobile number">
+                          </div>
+                          <!-- <div>
+                              <div class="flex-item">
+                                  <label for="file">Service Cover photo</label>
+                                  <input type="file" id="file" formControlName="serviceImage">
+                              </div>
+                          </div> -->
+                          <div class="service-cta">
+                              <button type="button" class="btn" (click)="addStaff()">Add Staff</button>
+                          </div>
+                      </div>
+                      
+                  </form>
+                </div>
+              </ng-content>
+          </div>
+      </div>
+    </div>
+  }
+

@@ -18,12 +18,26 @@
         flex-direction: row;
         column-gap: 20px;
         .list{
+            position: relative;
             cursor: pointer;
             border-radius: 8px;
             padding: 5px 10px;
             border: 1px solid #aaaa;
             i{
+                display: none;
+            }
+        }
+        .seleted{
+            background-color:coral;
+            color: white;
+            border: 1px solid #aaaa;
+            i{
+                display: block;
+                position: absolute;
+                top: -6px;
+                right: -6px;
                 padding-left: 10px;
+                color: black;
             }
         }
         .main-filter i{
