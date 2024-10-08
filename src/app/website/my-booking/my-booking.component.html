@@ -12,12 +12,12 @@
           </tr>
         </thead>
         <tbody>
-          @for (serviceHistory of customerBookingResponse?.payload?.serviceHistory; track $index) {
+          @for (serviceHistory of customerBookingResponse?.payload?.serviceHistory; let i= $index; track $index) {
             
-            @for (service of serviceHistory.services; let i = $index; track $index) {
+            @for (service of serviceHistory.services; track $index;let j = $index) {
               
           <tr>
-            <td>{{$index+1}}</td>
+            <td>{{i+j+1}}</td>
             <!-- <td>{{1234567}}</td> -->
             <td>{{serviceHistory.vendorName}}</td>
             <td>{{service.serviceName}}</td>
@@ -30,7 +30,7 @@
                 <p> {{serviceHistory.vendorPhone}}</p>
             </td>
             
-            <td><i class="fa-solid fa-trash delete actions" (click)=deleteBooking(customerId,$index)></i></td>
+            <td><i class="fa-solid fa-trash delete actions" (click)=deleteBooking(serviceHistory.bookingId,serviceHistory.vendorId,service.vendorServiceKey,i,j) ></i></td>
           </tr>
         }
       }
