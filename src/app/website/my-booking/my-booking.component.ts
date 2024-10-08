@@ -33,9 +33,11 @@ export class MyBookingComponent {
     })
   }
 
-  deleteBooking(customerid: any, index:any) {
-    this.myBookingservice.deleteBooking(customerid).subscribe((response) => {
-      console.log(customerid)
+  deleteBooking(bookingId:any, vendorId:any, vendorServiceKey:any, ivar:any,jvar:any) {
+    console.log(bookingId, vendorId, vendorServiceKey, ivar, jvar)
+      
+    this.myBookingservice.updateBooking(bookingId,vendorId,vendorServiceKey).subscribe((response) => {
+      
       console.log(response);
     })
     // throw new Error('Method not implemented.');
