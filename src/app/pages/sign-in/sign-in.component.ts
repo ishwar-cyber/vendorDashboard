@@ -3,18 +3,16 @@ import { Component, OnInit, QueryList, viewChild, viewChildren } from '@angular/
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { SignInService } from './sign-in.service';
-import { DrawerComponent } from '../../component/drawer/drawer.component';
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [ReactiveFormsModule,RouterLink,CommonModule, DrawerComponent],
+  imports: [ReactiveFormsModule,RouterLink,CommonModule],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'
 })
 export class SignInComponent implements OnInit {
 
-  // @viewChildren(DrawerComponen public drawer:QueryList<DrawerComponent>; 
   loginForm:any = FormGroup;
 
   constructor(

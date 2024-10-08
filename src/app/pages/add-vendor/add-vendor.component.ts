@@ -2,12 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { DrawerComponent } from '../../component/drawer/drawer.component';
 
 @Component({
   selector: 'app-add-vendor',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,DrawerComponent],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './add-vendor.component.html',
   styleUrl: './add-vendor.component.scss'
 })
