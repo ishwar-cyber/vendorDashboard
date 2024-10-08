@@ -196,38 +196,30 @@ button:hover {
     }
 }
 
-.service-card {
+.service-card, .service-card-2 {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
     margin: 20px;
-    background-color: rgb(168, 216, 246);
+    background-color: rgb(138, 206, 240);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: fit-content;
+    width: calc(30% - 40px); 
   }
 
-  .service-card-2 {
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 20px;
-    background-color: #e0f7fa; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
-    width: 30%;
-    height: fit-content; 
-    transition: transform 0.2s, box-shadow 0.2s;
-}
+  .service-card-2{
+    background-color: e0f7fa(168, 216, 246);
+  }
 
-.card-parent-2{
+
+.card-parent-2,.card-parent{
     display: flex;
     justify-content: space-around;
     align-items: start;
+    flex-wrap: wrap; 
+    max-width: 100%; 
+    overflow-x: auto; 
 }
 
-.card-parent{
-    display: flex;
-    flex-wrap: wrap;
-}
   
   h3 {
     margin: 10px 0;

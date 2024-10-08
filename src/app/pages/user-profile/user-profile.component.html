@@ -124,7 +124,7 @@
       <div class="service-card">
         <h3>{{ service.serviceName }}</h3>
         <p>Price: <strong>{{ service.price }}</strong></p>
-        <button (click)="deleteService(service.id)" class="delete-button">🗑️</button>
+        <button type="button"  (click)="deleteService(service.serviceId)" class="delete-button">🗑️</button>
       </div>
       }
       @empty(){
@@ -135,7 +135,7 @@
     }
     <br>
 
-    <button type="submit" class="save-btn" (click)="saveProfile()">Save</button>
+    <button type="submit" class="save-btn">Save</button>
   </form>
 
 </div>

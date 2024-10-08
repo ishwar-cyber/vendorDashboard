@@ -233,7 +233,7 @@ export class UserProfileComponent {
 
 
   deleteService(id: number) {
-    const index = this.manuallyAddedServices.findIndex((service: { id: number; }) => service.id === id);
+    const index = this.manuallyAddedServices.findIndex((service: { serviceId: number; }) => service.serviceId === id);
     if (index !== -1) {
       this.manuallyAddedServices.splice(index, 1);
     }
