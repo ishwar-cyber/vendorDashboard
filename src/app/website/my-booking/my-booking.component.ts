@@ -34,13 +34,16 @@ export class MyBookingComponent {
   }
 
   deleteBooking(bookingId:any, vendorId:any, vendorServiceKey:any, ivar:any,jvar:any) {
-    console.log(bookingId, vendorId, vendorServiceKey, ivar, jvar)
-      
+    // console.log( ivar, jvar)
+    // console.log(this.customerBookingResponse?.payload?.serviceHistory[ivar].services[jvar]);
+    
     this.myBookingservice.updateBooking(bookingId,vendorId,vendorServiceKey).subscribe((response) => {
       
       console.log(response);
+      this.customerBookingResponse?.payload?.serviceHistory[ivar].services.splice(jvar,1);
+      // console.log(this.customerBookingResponse?.payload?.serviceHistory);
     })
-    // throw new Error('Method not implemented.');
+    
   }
 
   srNoUpdate(){
