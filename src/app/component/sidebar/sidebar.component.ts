@@ -35,7 +35,7 @@ export class SidebarComponent {
     //   icon:'',
     //   name: 'Dashboard',
     //   redirectTo:'dashboard'
-    },
+    // },
     {
       icon:'',
       name:'Profile',

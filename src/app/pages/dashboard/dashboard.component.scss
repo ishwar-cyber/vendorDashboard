@@ -1,83 +1,88 @@
-.dashboard{
+.dashboard {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    .header-main{
+
+    .header-main {
         width: 100%;
     }
-    .main{
+
+    .main {
         width: 100%;
         min-height: 100vh;
         display: flex;
         flex-direction: row;
         column-gap: 20px;
-        .sidebar{
+
+        .sidebar {
             background-color: #405189;
             color: white;
             border-radius: 8px;
             padding: 20px;
         }
-        .apnel-main{
+
+        .apnel-main {
             width: 80%;
             padding: 20px;
-            background-color:#f3f3f9;
+            background-color: #f3f3f9;
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         }
-}
-
-.my-booking{
-    width: 100;
-    .content-table {
-        border-collapse: collapse;
-        margin: 25px 0;
-        font-size: 0.9em;
-        width: 100%;
-        border-radius: 5px 5px 0 0;
-        overflow: hidden;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     }
 
-    .content-table thead tr {
-        background-color: #009879;
-        color: #ffffff;
-        text-align: left;
-        font-weight: bold;
-    }
+    .my-booking {
+        width: 100;
 
-    .content-table th, td {
-        padding: 12px 15px;
-    }
-
-    .content-table tbody tr {
-        border-bottom: 1px solid #dddddd;
-        &:nth-of-type(even) {
-            background-color: #f3f3f3;
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            width: 100%;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
         }
-        // &:last-of-type {
-        //      border-bottom: 2px solid #009879;
-        //     .active-row {
-        //         font-weight: bold;
-        //         color: #009879;
-        //     }
-        // }
-    }
 
-    
-.actions
-{
-    display: flex;
-    /* background-color: yellow; */
-    column-gap: 15px;
-    /* border: none */
-}
+        .content-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+        }
 
-.update
-{
-    color: green;
-}
+        .content-table th,
+        td {
+            padding: 12px 15px;
+        }
 
-.delete
-{
-    color: red;
-}
-}
+        .content-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+
+            &:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            // &:last-of-type {
+            //      border-bottom: 2px solid #009879;
+            //     .active-row {
+            //         font-weight: bold;
+            //         color: #009879;
+            //     }
+            // }
+        }
+
+
+        .actions {
+            display: flex;
+            /* background-color: yellow; */
+            column-gap: 15px;
+            /* border: none */
+        }
+
+        .update {
+            color: green;
+        }
+
+        .delete {
+            color: red;
+        }
+    }}
