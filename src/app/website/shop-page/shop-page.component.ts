@@ -63,8 +63,8 @@ export class ShopPageComponent implements OnInit{
      this.vendorId = vendorId ? vendorId : localStorage.getItem('vendorId');
     })
     this.shopService.getVendorById(this.vendorId).subscribe((res)=>{
-      this.vendorService = res.payload;
-      console.log('this.vendorService', this.vendorService);
+      this.vendorService = res.payload;  
+      console.log('this.vendorService', this.vendorService.closingTime);
       
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0'); // Get hours and pad with zero
@@ -81,10 +81,10 @@ export class ShopPageComponent implements OnInit{
   public selectService(service: any){
    service.selected = ! service.selected;
     if(service.selected){
-      this.seletedServiceId?.push(service.serviceId);
+      this.seletedServiceId?.push(service.vendorServicekey);
     } else{
       let bookingId =  this.seletedServiceId.findIndex((booking:any)=>{
-        return booking.id === service.serviceId;
+        return booking.vendorServicekey === service.vendorServicekey;
       });
      this.seletedServiceId.splice(bookingId,1);
     }

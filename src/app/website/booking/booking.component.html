@@ -67,21 +67,18 @@
 @if(modalVisible){
     <div class="modal" >
         <div class="booking-payment">
-            <div class="close-modal" (click)="hideModal($event)">
+            <div class="close-modal" (click)="hideModal()">
                 <i class="fa-regular fa-circle-xmark"></i>
             </div>
-           
             <div class="modal-body">
-                <!-- <h3 class="thanks-message">Thank you for booking</h3> -->
                 <h3>Booking Successfully created....</h3>
                 <div class="success-icon">
-                    <!-- <img src="../../../../assets/png/check.png" alt="success" width="100%" height="200px"> -->
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" viewBox="0 0 50 50" xml:space="preserve" width="200" height="100">
                         <circle style="fill:#25AE88;" cx="25" cy="25" r="25"/>
                         <polyline style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="  38,15 22,33 12,25 "/>
                     </svg>
                 </div>
-                <h3>Booking Id : 12345678</h3>
+                <h3>Booking Id : {{this.bookingId.bookingId}}</h3>
             </div>
         </div>
     </div>
