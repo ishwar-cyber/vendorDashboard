@@ -1,5 +1,5 @@
 <div class="booking">
-    <div class="card">
+    <!-- <div class="card">
         <div class="card-body">
             <p>Customer Name : ishwar pandit</p>
             <p>Service Name: (Hair cut)</p>
@@ -11,5 +11,56 @@
             <button class="update">Update</button>
             <button class="accept">Accept</button>
         </div>
-    </div>
+    </div> -->
+    <div class="my-booking">
+        <div>
+          <label>Date:</label>
+          <div class="input-group">
+            <input type="date" (change)="onDateChange($event)" [value]=currentDate class="form-control col-md-8"
+              formControlName="defaultDate" />
+        </div>
+        </div>
+    
+        
+    
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th>Sr.no</th>
+              <!-- <th>Booking Id</th> -->
+              <th>Customer Name</th>
+              <th>Mobile Number</th>
+              <th>Services</th>
+              <th>Time Slot</th>
+    
+              <!-- <th>Cancel Booking</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            @for (serviceHistory of vendorBookingResponse?.payload?.serviceHistory; track $index) {
+    
+            @for (service of serviceHistory.services; track $index) {
+    
+            <tr>
+              <td>{{$index+1}}</td>
+              <!-- <td>{{1234567}}</td> -->
+              <td>{{serviceHistory.customerName}}</td>
+              <td>{{serviceHistory.customerPhone}}</td>
+              <td>{{service.serviceName}}</td>
+    
+              <td>{{serviceHistory.date}}
+                <!-- <p> -->
+                {{service.time}}
+                <!-- </p> -->
+              </td>
+    
+    
+    
+            </tr>
+            }
+            }
+    
+          </tbody>
+        </table>
+      </div>
 </div>

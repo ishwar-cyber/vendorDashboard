@@ -55,7 +55,7 @@ input[type="radio"] {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #405189;
     color: white;
     border: none;
     border-radius: 4px;
@@ -162,7 +162,7 @@ input[type="number"] {
 .save-btn{
     margin-left: 40%;
     width: fit-content;
-    background-color: darkblue;
+    background-color: #405189;
 }
 
 

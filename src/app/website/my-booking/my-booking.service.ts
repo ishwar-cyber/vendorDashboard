@@ -10,7 +10,6 @@ export class MyBookingService {
 
   constructor(private httpClient : HttpClient) { }
 
-  // getDummyBookingsURL="http://localhost:8082/booking/test/";
   getDummyBookingsURL="http://localhost:8082/booking/customer/history/";
   updateBookingURL="http://localhost:8082/booking/remove/service/";
 
