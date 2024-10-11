@@ -119,7 +119,9 @@ export class BookingComponent implements OnInit{
   }
 
   public bookingTime(time: any){
-    this.selectedTime.has(time.time) ? this.selectedTime.delete(time.time) : this.selectedTime.add(time.time);
+    console.log(time.time+':00');
+    
+    this.selectedTime.has(time.time+':00') ? this.selectedTime.delete(time.time+':00') : this.selectedTime.add(time.time+':00');
     this.bookedTime = [...this.selectedTime];
     if(this.bookedTime?.length <= this.vendorServiceKey?.length){
       this.disabled = true;
@@ -131,7 +133,7 @@ export class BookingComponent implements OnInit{
   }
 
   public isSelected(time:any):boolean{    
-    return this.selectedTime.has(time.time);
+    return this.selectedTime.has(time.time+':00');
   }
 
   public BookingDate(date:any){
@@ -145,7 +147,7 @@ export class BookingComponent implements OnInit{
   } 
 
   bookedTimeSlot(){
-    let authToken = localStorage.getItem('token')
+    let authToken = localStorage.getItem('customerId')
     if(authToken){
       for(let i = 0; i < this.vendorServiceKey.length; i++){
         this.selectTimeService.push({
@@ -166,8 +168,7 @@ export class BookingComponent implements OnInit{
       };
     
       this.selectedTime = new Set();
-      let cust = 'CUC7E1218A26FDC706';
-     
+      let cust = localStorage.getItem('customerId');
       this.bookingService.createBooking(payload,this.vendorId, cust).subscribe((response:Vendor)=>{
         this.bookingId = response.payload
         console.log('this.bookingId',this.bookingId.bookingId);

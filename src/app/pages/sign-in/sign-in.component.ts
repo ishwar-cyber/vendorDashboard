@@ -14,7 +14,7 @@ import { SignInService } from './sign-in.service';
 export class SignInComponent implements OnInit {
 
   loginForm:any = FormGroup;
-
+  loginErrorMessage: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -31,15 +31,29 @@ export class SignInComponent implements OnInit {
     // login Form Control
 
   }
-
+  get f(): { [key: string]: AbstractControl } {
+    return this.loginForm.controls;
+  }
   public login() {
-    console.log('login form', this.loginForm?.controls);
-    this.signInService.login(this.loginForm.value).subscribe((response:any)=>{
-      console.log(response);
-      if(response.status==="SUCCESS"){
-        this.router.navigate(["/website/home"])
-      }
-    });
+    console.log('login form', this.loginForm.invalid);
+    if(this.loginForm.valid){
+      this.signInService.login(this.loginForm.value).subscribe((response:any)=>{
+        if(response.status==="SUCCESS"){
+          localStorage.setItem('customerId',response.payload.userId)
+          let checkRedirection = localStorage.getItem('redirectTo');
+          if(checkRedirection){
+            localStorage.removeItem('redirectTo');
+            this.router.navigate(["/website/mybooking"]);
+          } else {
+            this.router.navigate(["/website/home"]);
+          }
+        } else {
+          this.router.navigate(["/"]);
+        }
+      });
+    } else {
+      this.loginErrorMessage = true;
+    }
   }
 
   public checkMobileNumber(control: AbstractControl){

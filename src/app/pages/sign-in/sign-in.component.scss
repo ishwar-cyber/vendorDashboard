@@ -59,6 +59,9 @@
         }
         .login-cta{
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
             button{
                 padding: 10px 20px;
                 border: none;

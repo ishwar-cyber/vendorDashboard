@@ -15,6 +15,7 @@ export class WebsideComponent implements OnInit{
 
   public openLocationDropdown: boolean = false;
   public authToken: any;
+  public customerId:any;
   pincodeForm:any = FormGroup;
   pincode: number = 0;
   constructor(
@@ -28,6 +29,7 @@ export class WebsideComponent implements OnInit{
       pincode:['',[Validators.required,Validators.maxLength(6)]],
    });
    this.authToken = localStorage.getItem('token');
+   this.customerId = localStorage.getItem('customerId')
   }
   getLocation(){
     if(navigator.geolocation){

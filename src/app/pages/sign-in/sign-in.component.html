@@ -2,6 +2,9 @@
     <div class="left-image"></div>
     <div class="login-form">
         <h3>Login</h3>
+        @if(loginErrorMessage){
+             <p class="error">please enter valid crediational</p>
+        }
         <form [formGroup]="loginForm">
             <div class="flex-container">
                 <div class="flex-item">
@@ -41,8 +44,10 @@
                     </div>
                 }
             </div>
+
             <div class="login-cta">
                 <button type="button" (click)="login()">Login</button>
+                <a href="/register">I don't have register my account</a>
             </div>
         </form>
     </div>

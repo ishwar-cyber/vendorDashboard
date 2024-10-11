@@ -29,13 +29,15 @@
                 </div>
             </div>
             <div class="login_signup">
-                    @if(authToken){
-                     <a [routerLink]="['/website/mybooking']" routerLinkActive="router-link-active" >My Booking</a>
-                    }
-                    <a [routerLink]="['/login']" routerLinkActive="router-link-active" >{{authToken ? 'Welcome' : 'Log in'}}</a>
-                    @if(!authToken){
-                        <a [routerLink]="['/singup']">Sign up</a>
-                    }
+              @if (authToken || customerId) {
+                <a [routerLink]="['/website/mybooking']" routerLinkActive="router-link-active" >My Booking</a>
+                <a>Welcome</a>
+              } @else if (!(authToken || customerId)) {
+                <a [routerLink]="['/login']" routerLinkActive="router-link-active" >{{authToken ? 'Welcome' : 'Log in'}}</a>
+                <a [routerLink]="['/singup']">Sign up</a>
+              } @else {
+                <a [routerLink]="['/login']" routerLinkActive="router-link-active" >{{authToken ? 'Welcome' : 'Log in'}}</a>
+              }
             </div>
         </div>
        
