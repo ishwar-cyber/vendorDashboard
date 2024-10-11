@@ -92,28 +92,28 @@
             </div>
             }
 
-            <label for="pincode">Pincode:</label>
-            <input type="text" id="pincode" [formControl]="pincode" required>
-            @if(this.onboardingForm.get('pincode')?.invalid && (this.onboardingForm.get('pincode')?.dirty ||
-            this.onboardingForm.get('pincode')?.touched)) {
+            <label for="pinCode">pinCode:</label>
+            <input type="text" id="pinCode" [formControl]="pinCode" required>
+            @if(this.onboardingForm.get('pinCode')?.invalid && (this.onboardingForm.get('pinCode')?.dirty ||
+            this.onboardingForm.get('pinCode')?.touched)) {
             <div>
-                <small class="error">Pincode must be 6 digits.</small>
+                <small class="error">pinCode must be 6 digits.</small>
             </div>
             }
 
-            <label for="open">Outlet Opening Time:</label>
-            <input type="time" id="open" [formControl]="open" required>
-            @if(this.onboardingForm.get('open')?.invalid && (this.onboardingForm.get('open')?.dirty ||
-            this.onboardingForm.get('open')?.touched)) {
+            <label for="openingTime">Outlet Open Time:</label>
+            <input type="time" id="openingTime" [formControl]="openingTime" required>
+            @if(this.onboardingForm.get('openingTime')?.invalid && (this.onboardingForm.get('openingTime')?.dirty ||
+            this.onboardingForm.get('openingTime')?.touched)) {
             <div>
-                <small class="error">Opening time is required.</small>
+                <small class="error">Open time is required.</small>
             </div>
             }
 
-            <label for="close">Outlet Closing Time:</label>
-            <input type="time" id="close" [formControl]="close" required>
-            @if(this.onboardingForm.get('close')?.invalid && (this.onboardingForm.get('close')?.dirty ||
-            this.onboardingForm.get('close')?.touched)) {
+            <label for="closingTime">Outlet Closing Time:</label>
+            <input type="time" id="closingTime" [formControl]="closingTime" required>
+            @if(this.onboardingForm.get('closingTime')?.invalid && (this.onboardingForm.get('closingTime')?.dirty ||
+            this.onboardingForm.get('closingTime')?.touched)) {
             <div>
                 <small class="error">Closing time is required.</small>
             </div>

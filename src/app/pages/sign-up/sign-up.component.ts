@@ -47,12 +47,12 @@ export class SignUpComponent {
 
   // Vendor Additional Details
   vendorOutletName = new FormControl('');
-  pincode = new FormControl('');
+  pinCode = new FormControl('');
   state = new FormControl('');
   city = new FormControl('');
   address = new FormControl('');
-  open = new FormControl('');
-  close = new FormControl('');
+  openingTime = new FormControl('');
+  closingTime = new FormControl('');
   seats = new FormControl('');
   shop_mobile = new FormControl('');
   shop_email = new FormControl('');
@@ -75,14 +75,14 @@ export class SignUpComponent {
       password: this.password,
       email: this.email,
       vendorOutletName: this.vendorOutletName,
-      address: this.address,
-      open: this.open,
-      close: this.close,
+      addressLine1: this.address,
+      openingTime: this.openingTime,
+      closingTime: this.closingTime,
       seats: this.seats,
       shop_mobile: this.shop_mobile,
       shop_email: this.shop_email,
       otherDetails: this.otherDetails,
-      pincode: this.pincode,
+      pinCode: this.pinCode,
       state: this.state,
       city: this.city,
       services: this.services,
@@ -112,12 +112,12 @@ export class SignUpComponent {
     if (this.userType === 'Vendor') {
       this.role.setValue('VENDOR');
       this.vendorOutletName.setValidators([Validators.required]);
-      this.pincode.setValidators([Validators.required, Validators.pattern(/^[0-9]{6}$/)]);
+      this.pinCode.setValidators([Validators.required, Validators.pattern(/^[0-9]{6}$/)]);
       this.state.setValidators([Validators.required]);
       this.city.setValidators([Validators.required]);
       this.address.setValidators([Validators.required]);
-      this.open.setValidators([Validators.required]);
-      this.close.setValidators([Validators.required]);
+      this.openingTime.setValidators([Validators.required]);
+      this.closingTime.setValidators([Validators.required]);
       this.seats.setValidators([Validators.required, Validators.min(1)]);
       this.shop_mobile.setValidators([Validators.required]);
       this.shop_email.setValidators([Validators.required]);
@@ -127,12 +127,12 @@ export class SignUpComponent {
     else {
       this.role.setValue('CUSTOMER');
       this.vendorOutletName.clearValidators();
-      this.pincode.clearValidators();
+      this.pinCode.clearValidators();
       this.state.clearValidators();
       this.city.clearValidators();
       this.address.clearValidators();
-      this.open.clearValidators();
-      this.close.clearValidators();
+      this.openingTime.clearValidators();
+      this.closingTime.clearValidators();
       this.seats.clearValidators();
       this.shop_mobile.clearValidators();
       this.shop_email.clearValidators();
