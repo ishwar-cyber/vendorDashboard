@@ -27,8 +27,6 @@ export class BookingComponent implements OnInit{
   ngOnInit(): void {
     const date = new Date();
     this.currentDate = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`;
-    // console.log(this.currentDate);
-    localStorage.setItem("vendorId", "VED6F946C980D45014");
     this.getVendorBookingDet(this.currentDate);
 
     // this.dateFormGroup = this.fb.group({

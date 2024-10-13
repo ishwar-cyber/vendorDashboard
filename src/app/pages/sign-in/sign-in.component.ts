@@ -23,7 +23,7 @@ export class SignInComponent implements OnInit {
   {
     this.loginForm = this.formBuilder.group({
       mobile:['', [Validators.required, Validators.maxLength(10),this.checkMobileNumber]],
-      password:['', [Validators.required, Validators.maxLength(8)]]
+      password:['', [Validators.required, Validators.maxLength(15)]]
     })
   }
 
@@ -39,14 +39,20 @@ export class SignInComponent implements OnInit {
     if(this.loginForm.valid){
       this.signInService.login(this.loginForm.value).subscribe((response:any)=>{
         if(response.status==="SUCCESS"){
-          localStorage.setItem('customerId',response.payload.userId)
+          localStorage.setItem('customerId',response.payload.userId);
           let checkRedirection = localStorage.getItem('redirectTo');
           if(checkRedirection){
             localStorage.removeItem('redirectTo');
             this.router.navigate(["/website/mybooking"]);
           } else {
-            this.router.navigate(["/website/home"]);
-          }
+            if(response.payload.role === 'CUSTOMER')
+            localStorage.setItem('customerId',response.payload.userId);
+              this.router.navigate(["/website/home"]);
+            } 
+            if(response.payload.role === 'VENDOR'){
+              localStorage.setItem('vendorId',response.payload.userId);
+              this.router.navigate(["/dashboard/booking"]);
+           }
         } else {
           this.router.navigate(["/"]);
         }

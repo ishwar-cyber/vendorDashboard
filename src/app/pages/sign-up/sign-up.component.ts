@@ -53,7 +53,7 @@ export class SignUpComponent {
   address = new FormControl('');
   openingTime = new FormControl('');
   closingTime = new FormControl('');
-  seats = new FormControl('');
+  noOfStaff = new FormControl('');
   shop_mobile = new FormControl('');
   shop_email = new FormControl('');
   provided_services = new FormControl('');
@@ -78,7 +78,7 @@ export class SignUpComponent {
       addressLine1: this.address,
       openingTime: this.openingTime,
       closingTime: this.closingTime,
-      seats: this.seats,
+      noOfStaff: this.noOfStaff,
       shop_mobile: this.shop_mobile,
       shop_email: this.shop_email,
       otherDetails: this.otherDetails,
@@ -118,7 +118,7 @@ export class SignUpComponent {
       this.address.setValidators([Validators.required]);
       this.openingTime.setValidators([Validators.required]);
       this.closingTime.setValidators([Validators.required]);
-      this.seats.setValidators([Validators.required, Validators.min(1)]);
+      this.noOfStaff.setValidators([Validators.required, Validators.min(1)]);
       this.shop_mobile.setValidators([Validators.required]);
       this.shop_email.setValidators([Validators.required]);
       this.services.setValidators([Validators.required])
@@ -133,7 +133,7 @@ export class SignUpComponent {
       this.address.clearValidators();
       this.openingTime.clearValidators();
       this.closingTime.clearValidators();
-      this.seats.clearValidators();
+      this.noOfStaff.clearValidators();
       this.shop_mobile.clearValidators();
       this.shop_email.clearValidators();
       this.services.clearValidators();

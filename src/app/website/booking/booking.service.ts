@@ -7,9 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class BookingService {
 
-  bookingUrl = 'http://localhost:8088/booking';
-  // getBookingSlotUrl = 'http://localhost:8080/booking';
-  // localhost:8082/booking/VEDAE3B376CB054DE5?date=2024-09-28
+  bookingUrl = 'http://localhost:8082/booking';
 
   constructor(private httpClient: HttpClient) { }
 

@@ -119,12 +119,12 @@
             </div>
             }
 
-            <label for="seats">Total Seats within Outlet:</label>
-            <input type="number" id="seats" [formControl]="seats" min="1" required>
-            @if(this.onboardingForm.get('seats')?.invalid && (this.onboardingForm.get('seats')?.dirty ||
-            this.onboardingForm.get('seats')?.touched)) {
+            <label for="noOfStaff">Total number of staff within Outlet:</label>
+            <input type="number" id="noOfStaff" [formControl]="noOfStaff" min="1" required>
+            @if(this.onboardingForm.get('noOfStaff')?.invalid && (this.onboardingForm.get('noOfStaff')?.dirty ||
+            this.onboardingForm.get('noOfStaff')?.touched)) {
             <div>
-                <small class="error">Total seats must be at least 1.</small>
+                <small class="error">Total number of staff must be at least 1.</small>
             </div>
             }
 
