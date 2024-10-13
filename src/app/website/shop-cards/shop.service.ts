@@ -15,7 +15,7 @@ export class ShopService {
     return this.httpClient.get<Vendor>(this.vendorUrl);
   }
 
-  public getVendorById(id:any){
+  public getVendorById(id:any):Observable<any>{
     return this.httpClient.get<Vendor>(this.vendorUrl+`/${id}`);
   }
 }

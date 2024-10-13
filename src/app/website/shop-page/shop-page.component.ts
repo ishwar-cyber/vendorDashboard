@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CalculateDistance } from '../../common/calculate-distance';
 import { SharedService } from '../../common/shared.service';
 import { RatingComponent } from '../../component/rating/rating.component';
+import { UserOnboardServiceService } from '../../pages/sign-up/sign-up.service';
 import { BookingComponent } from '../booking/booking.component';
 import { ShopService } from '../shop-cards/shop.service';
 
@@ -29,6 +30,7 @@ export class ShopPageComponent implements OnInit{
   router = inject(Router);
   sharedService = inject(SharedService);
   shopService = inject(ShopService);
+  userOnBoardingService= inject(UserOnboardServiceService)
   distanceCal = CalculateDistance
 
   constructor(){
@@ -63,9 +65,13 @@ export class ShopPageComponent implements OnInit{
      this.vendorId = vendorId ? vendorId : localStorage.getItem('vendorId');
     })
     this.shopService.getVendorById(localStorage.getItem('vendorId')).subscribe((res)=>{
-      this.vendorService = res.payload;  
-      console.log('this.vendorService', this.vendorService.closingTime);
-      
+      // console.log('response 1234', res.payload.services.serviceId);
+      // this.userOnBoardingService.fetchMasterServices().subscribe((response: any) => {
+      //   response.payload.filter((master:any)=>{
+      //       master.id === res.payload.services.serviceId
+      //   })
+      // });
+      this.vendorService = res.payload;      
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0'); // Get hours and pad with zero
       const minutes = String(now.getMinutes()).padStart(2, '0'); // Get minutes and pad with zero
@@ -75,6 +81,8 @@ export class ShopPageComponent implements OnInit{
       } else {
         this.closeTime = true;
       }
+
+      
     });
     localStorage.removeItem('selectedServices');
   }

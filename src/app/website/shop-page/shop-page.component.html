@@ -44,11 +44,11 @@
             <div class="service_card">
                 <img [src]=service.image alt="" width="100%" height="200px">
                     <div class="service_details">
-                        <h2>{{service?.serviceEntity?.serviceName}}</h2>
+                        <h2>{{service?.serviceName}}</h2>
                     </div>
                 <div class="service_price_rating">
                    <span> &#8377; {{service?.price}} </span>
-                   <span class="rating">{{service?.rating}}<span class="filled">★</span></span>
+                   <!-- <span class="rating">{{service?.rating}}<span class="filled">★</span></span> -->
                 </div>
                 <div class="service_cta">
                     <input type="checkbox"  [value]=service.id  [checked]="service.selected" (change)="selectService(service)" id="">

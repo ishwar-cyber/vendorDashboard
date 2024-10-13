@@ -13,7 +13,7 @@
                 </div>
                 @if(loginForm.controls['mobile']?.invalid && (loginForm.controls['mobile']?.dirty || loginForm.controls['mobile']?.touched)){
                     <div class="error">
-                        @if((loginForm?.controls['mobile']?.errors?.required && !loginForm?.controls['mobile']?.errors?.invalidMobile)){
+                        @if((loginForm?.controls['mobile']?.errors?.required)){
                             <div>
                                 Plaese enter your mobile number
                             </div>
