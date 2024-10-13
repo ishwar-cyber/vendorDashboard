@@ -133,7 +133,7 @@ export class UserProfileComponent {
         servicesArray.clear();
         payload.services.forEach((service: { vendorServicekey: any; serviceName: any; price: any; }) => {
           const serviceGroup = new FormGroup({
-            id: new FormControl(service.vendorServicekey),
+            serviceId: new FormControl(service.vendorServicekey),
             name: new FormControl(service.serviceName),
             price: new FormControl(service.price),
           });
