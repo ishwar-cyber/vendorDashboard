@@ -28,33 +28,40 @@
         @if(activeTab === 'morning'){
             <div class="time-booking">
                 @for(time of morningTimes; track $index){
-                    <div 
-                        class="time" 
-                        [ngClass]="isSelected(time) ? ' selectSlot' : 'time'" 
-                        (click)="bookingTime(time)"> {{time.time}}
-                    </div>
+                    @if(time.manpowerLeft !== 0){
+                        <div
+                            class="time"
+                            [ngClass]="isSelected(time) ? ' selectSlot' : 'time'" 
+                            (click)="bookingTime(time)"> {{time.time}}
+                        </div>
+                    }
+                   
                 }
             </div>
         }   
         @if(activeTab === 'afternoon'){
             <div class="time-booking">
                 @for(time of afternoonTimes; track $index){
-                    <div 
-                        class="time" 
-                        [ngClass]="isSelected(time) ? ' selectSlot' : 'time'" 
-                        (click)="bookingTime(time)"> {{time.time}}
-                    </div>
+                     @if(time.manpowerLeft !== 0){
+                        <div
+                            class="time"
+                            [ngClass]="isSelected(time) ? ' selectSlot' : 'time'" 
+                            (click)="bookingTime(time)"> {{time.time}}
+                        </div>
+                    }
                 }
             </div>
         }   
         @if(activeTab === 'evening'){
             <div class="time-booking">
                 @for(time of eveningTimes; track $index){
-                    <div 
-                        class="time" 
-                        [ngClass]="isSelected(time) ? ' selectSlot' : 'time'" 
-                        (click)="bookingTime(time)"> {{time.time}}
-                    </div>
+                    @if(time.manpowerLeft !== 0){
+                        <div
+                            class="time"
+                            [ngClass]="isSelected(time) ? ' selectSlot' : 'time'" 
+                            (click)="bookingTime(time)"> {{time.time}}
+                        </div>
+                    }
                 }
             </div>
         }   
@@ -65,7 +72,7 @@
 </div>
 
 @if(modalVisible){
-    <div class="modal" >
+    <div class="modal">
         <div class="booking-payment">
             <div class="close-modal" (click)="hideModal()">
                 <i class="fa-regular fa-circle-xmark"></i>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Response } from './booking.component';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class BookingService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getBookingSlot(vendorId:any, date:any){
+  public getBookingSlot(vendorId:any, date:any):Observable<any>{
     let url = this.bookingUrl+`/${vendorId}?date=${date}`
    return this.httpClient.get(url);
   }

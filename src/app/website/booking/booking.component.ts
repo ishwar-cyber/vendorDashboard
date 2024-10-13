@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import moment from 'moment';
 import { SharedService } from '../../common/shared.service';
 import { CalendarComponent } from '../../component/calendar/calendar.component';
 import { Vendor } from '../../model/response';
@@ -21,9 +22,9 @@ export class BookingComponent implements OnInit{
   public showList = false;
   public disabled: boolean = false;
   public times: any;
-  public morningTimes: any;
-  public eveningTimes: any
-  public afternoonTimes: any;
+  public morningTimes: any = [];
+  public eveningTimes: any = [];
+  public afternoonTimes: any = [];
   public bookedTime:any = [];
   public selectedTime: Set<string> = new Set();
   public selectSlot: boolean = false;
@@ -32,6 +33,7 @@ export class BookingComponent implements OnInit{
   public selectedDay:any = "Today";
   @Input() serviceId: any;
   @Input() vendorService:any;
+  public isAvailbaleSlot:any;
   public modalVisible = false;
   public weekDays: Date[] = [];
   public selectTimeService: any =[];
@@ -50,7 +52,13 @@ export class BookingComponent implements OnInit{
 
     let date = this.getProperDate();
     this.bookingService.getBookingSlot(this.vendorId, date).subscribe((slots)=>{
-      console.log('res slots', slots);
+      this.isAvailbaleSlot = slots?.payload.slots;
+      const size = Math.ceil( this.isAvailbaleSlot.length/3);
+
+      this.morningTimes =  this.isAvailbaleSlot.slice(0, size);
+      this.afternoonTimes =  this.isAvailbaleSlot.slice(size, size * 2);
+      this.eveningTimes =  this.isAvailbaleSlot.slice(size * 2, size * 3);
+      console.log('res slots 3456',   this.morningTimes);
     })
 
     let today = new Date();
@@ -62,9 +70,9 @@ export class BookingComponent implements OnInit{
 
     this.shopService.getVendorById(this.vendorId).subscribe((res)=>{
       this.vendorService = res.payload;  
-      let closeTime = `${this.vendorService?.closingTime.split(":")[0]}:${this.vendorService?.closingTime.split(":")[2]}`;
-      let openingTime = `${this.vendorService?.openingTime.split(":")[0]}:${this.vendorService?.openingTime.split(":")[2]}`;
-      this.genrateTime(openingTime,closeTime);
+      let closeTime = `${this.vendorService?.closingTime.split(":")[0]}:${this.vendorService?.closingTime.split(":")[1]}`;
+      let openingTime = `${this.vendorService?.openingTime.split(":")[0]}:${this.vendorService?.openingTime.split(":")[1]}`;
+      // this.genrateTime(openingTime,closeTime);
     });
     
 
@@ -77,12 +85,6 @@ export class BookingComponent implements OnInit{
      return `${year}-${month}-${day}`;
   }
 
-  public genrateTime(open:string, close:string){
-    // this.morningTimes = this.generateTimeSlots(open, close);
-    this.morningTimes = this.generateTimeSlots('09:00', '14:00');
-    this.afternoonTimes = this.generateTimeSlots('14:30', '20:00');
-    this.eveningTimes = this.generateTimeSlots('20:30', '22:00');
-  }
 
   public showDropdown(){
     this.showList = !this.showList;
@@ -99,13 +101,29 @@ export class BookingComponent implements OnInit{
     return extractedDate;
   }
 
+  public genrateTime(open:string, close:string){
+    let totalTimeSlot = this.generateTimeSlots(open, close);
+
+    const size = Math.ceil(totalTimeSlot.length/3); // Determine the size of each sub-array
+
+    this.morningTimes = totalTimeSlot.slice(0, size);
+    this.afternoonTimes = totalTimeSlot.slice(size, size * 2);
+    this.eveningTimes = totalTimeSlot.slice(size * 2, size * 3);
+    
+    console.log(' this.morningTimes', this.morningTimes);
+    console.log(' this.afternoonTimes', this.afternoonTimes);
+    console.log(' this.eveningTimes', this.eveningTimes);
+   
+    // this.afternoonTimes = this.generateTimeSlots('14:30', '20:00');
+    // this.eveningTimes = this.generateTimeSlots('20:30', '22:00');
+  }
+
   // Booking Slot 
   public generateTimeSlots(startTime: string, endTime: string): { time: string }[] {
     const slots: { time: string }[] = [];
     const start = new Date(`1970-01-01T${startTime}:00`);
     const end = new Date(`1970-01-01T${endTime}:00`);
     
-  
     for (let time = start; time <= end; time.setMinutes(time.getMinutes() + 30)) {
       const hours = time.getHours();
       const minutes = time.getMinutes();

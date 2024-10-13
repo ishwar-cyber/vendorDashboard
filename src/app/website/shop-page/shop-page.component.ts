@@ -62,7 +62,7 @@ export class ShopPageComponent implements OnInit{
     this.sharedService.getData().subscribe((vendorId)=>{
      this.vendorId = vendorId ? vendorId : localStorage.getItem('vendorId');
     })
-    this.shopService.getVendorById(this.vendorId).subscribe((res)=>{
+    this.shopService.getVendorById(localStorage.getItem('vendorId')).subscribe((res)=>{
       this.vendorService = res.payload;  
       console.log('this.vendorService', this.vendorService.closingTime);
       
