@@ -47,7 +47,12 @@ export class BookingComponent implements OnInit{
   ngOnInit(): void {
     this.vendorId = localStorage.getItem('vendorId')
     this.sharedService.getData().subscribe((res)=>{
-      this.vendorServiceKey = res; 
+      this.vendorServiceKey = res;
+      if(this.vendorServiceKey.length === this.bookedTime.length){
+        this.disabled = true;
+      } else{
+        this.disabled = false;
+      }
     });
 
     let date = this.getProperDate();
@@ -138,19 +143,18 @@ export class BookingComponent implements OnInit{
 
   public bookingTime(time: any){
     console.log(time.time+':00');
-    
     this.selectedTime.has(time.time+':00') ? this.selectedTime.delete(time.time+':00') : this.selectedTime.add(time.time+':00');
     this.bookedTime = [...this.selectedTime];
-    if(this.bookedTime?.length <= this.vendorServiceKey?.length){
+    if (this.bookedTime?.length === this.vendorServiceKey?.length) {
       this.disabled = true;
-    } else{
+    } else {
       this.disabled = false;
-      this.selectedTime.delete(time.time)
-      alert("Please selecte service first")
+      // this.selectedTime.delete(time.time);
+      // alert("Please selecte service first");
     }
   }
 
-  public isSelected(time:any):boolean{    
+  public isSelected(time:any):boolean {    
     return this.selectedTime.has(time.time+':00');
   }
 
@@ -160,8 +164,7 @@ export class BookingComponent implements OnInit{
       const month = String(dates. getMonth() + 1). padStart(2, '0');
       const day = String(dates.getDate()).padStart(2 ,'0');
       this.selectedDay = `${year}-${month}-${day}`;
-
-    this.showList = false;
+      this.showList = false;
   } 
 
   bookedTimeSlot(){

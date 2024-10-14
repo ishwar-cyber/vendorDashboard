@@ -66,9 +66,11 @@
             </div>
         }   
     </div>
-    <div class="booking-cta">
-        <button  class="cta" [ngClass]="disabled === false ? 'disabled' :'active'" (click)="bookedTimeSlot()">Book Service</button>
-    </div>
+    @if(disabled){
+        <div class="booking-cta">
+            <button  class="cta active" (click)="bookedTimeSlot()">Book Service</button>
+        </div>
+    }
 </div>
 
 @if(modalVisible){

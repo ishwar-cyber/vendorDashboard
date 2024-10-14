@@ -35,6 +35,20 @@ export class ShopCardsComponent implements OnInit{
       name: "Rating +"
     }
   ];
+
+  public imageArr = [
+    'https://fsdproject.s3.ap-south-1.amazonaws.com/salon1.jpg', 
+    'https://fsdproject.s3.ap-south-1.amazonaws.com/salon10.png', 
+    'https://fsdproject.s3.ap-south-1.amazonaws.com/salon11.png', 
+    'https://fsdproject.s3.ap-south-1.amazonaws.com/salon2.png', 
+    'https://fsdproject.s3.ap-south-1.amazonaws.com/salon3.jpg', 
+    'https://fsdproject.s3.ap-south-1.amazonaws.com/salon4.png', 
+    'https://fsdproject.s3.ap-south-1.amazonaws.com/salon5.png', 
+    'https://fsdproject.s3.ap-south-1.amazonaws.com/salon6.png', 
+    'https://fsdproject.s3.ap-south-1.amazonaws.com/salon7.png', 
+    'https://fsdproject.s3.ap-south-1.amazonaws.com/salon8.jpeg', 
+    'https://fsdproject.s3.ap-south-1.amazonaws.com/salon9.png'
+  ];
   public salonShop: any;
   public filterName: Set<string> = new Set();;
   public distance: number = 0;
@@ -47,10 +61,25 @@ export class ShopCardsComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.shopService.getAllVendor().subscribe((response)=>{
-      this.salonShop = response.payload;
-
-      this.tempShopData =  this.salonShop
+    this.shopService.getAllVendor().subscribe((response:any)=>{
+     
+      
+        this.salonShop = response.payload;
+        for(let i=0; i < this.imageArr.length ;i++){
+        for(let j=0; j < response.payload.length;j++){
+          if(!this.salonShop[j].bannerImage){
+              this.salonShop[j]['bannerImage'] = this.imageArr[j];
+            }
+          }
+        }
+        // this.salonShop.map((vendor:any)=>{
+        //   const image = this.imageArr.find((img)=>{
+        //     return  this.salonShop
+        //   })
+        // })
+        
+        console.log('imageArr', this.salonShop);
+        this.tempShopData =  this.salonShop;
     });
 
     this.sharedService.getData().subscribe((res)=>{
@@ -63,8 +92,7 @@ export class ShopCardsComponent implements OnInit{
         this.salonShop = this.tempShopData;
       }
      
-    })
-    
+    });
     this.getLocation();
   }
 

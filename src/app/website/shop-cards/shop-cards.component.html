@@ -19,7 +19,11 @@
     <div class="shop_card">
         @for(shop of salonShop; track $index){
             <div class="card" (click)="redirectToShop(shop.userId)">
-                <img  src="https://images.pexels.com/photos/705255/pexels-photo-705255.jpeg?auto=compress&cs=tinysrgb&w=800" alt="banner" loading="lazy">
+                @if(shop.bannerImage){
+                    <img  [src]="shop.bannerImage" alt="banner" loading="lazy" width="191px" height="150px">
+                } @else{
+                    <img  src="https://images.pexels.com/photos/705255/pexels-photo-705255.jpeg?auto=compress&cs=tinysrgb&w=800" alt="banner" loading="lazy"  width="191px" height="150px">
+                }
                 <div class="card-body">
                     <h3>{{shop.vendorOutletName}}</h3> 
                     <span>{{shop.rating}}</span>

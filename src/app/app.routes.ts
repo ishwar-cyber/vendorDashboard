@@ -28,7 +28,7 @@ export const routes: Routes = [
         path:'profile/:userid',component:UserProfileComponent
     },
     {
-        path:'dashboard', component:DashboardComponent,
+        path:'dashboard', component:DashboardComponent, canActivate:[gaurdGuard],
 
         children:[
             {
@@ -64,7 +64,7 @@ export const routes: Routes = [
                 path:'booking/:id', component:BookingComponent, title:'Booking Service'
             },
             {
-                path:'mybooking', component:MyBookingComponent, title:'Booking Service',
+                path:'mybooking', component:MyBookingComponent, title:'Booking Service', canActivate:[gaurdGuard]
                 // canActivate: [gaurdGuard],
             }
         ]
